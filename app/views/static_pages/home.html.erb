@@ -1,5 +1,14 @@
 <% provide(:title, "Home") %>
-<h1>Dashboard</h1>
-<p>
-	home sweet home
-</p>
+<div class="center jumbotron">
+  <h1>Welcome to the Smaug!</h1>
+
+  <h2>
+	dis like the home page
+  </h2>
+
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+</div>
+
+<!-- xxx hm how give credit / get permission for image??? -->
+<%= link_to image_tag("smaug.png", alt: "Smaug logo"),
+            'http://icons.mysitemyway.com/legacy-icon/128305-simple-red-square-icon-animals-animal-dragon1/' %>
