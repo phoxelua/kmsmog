@@ -24,4 +24,12 @@ class StaticPagesControllerTest < ActionController::TestCase
     assert_response :success
     assert_select "title", "Contact | KMSC"
   end
+
+  # xxx maybe make a dynamic controller??
+  test "should get dashboard" do
+    get :dashboard
+    assert_response :success
+    assert_select "title", "Dashboard | KMSC"
+  end
+
 end
