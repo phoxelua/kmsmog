@@ -6,5 +6,9 @@
   </span>
   <span class="timestamp">
     Created <%= time_ago_in_words(customer.created_at) %> ago.
+    <% if current_user?(customer.user) %>
+      <%= link_to "delete", customer, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %>    
   </span>
 </li>

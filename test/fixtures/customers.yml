@@ -22,7 +22,14 @@ three:
   name: Zenu
   phone: 619-123-4567
   license_plate: MyString
-  user: michael
+  user: bob
+
+four:
+  name: Bbbb
+  phone: 619-123-4567
+  license_plate: MyString
+  user: lana
+
 
 <% 30.times do |n| %>
 customer_<%= n %>:
