@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Axel
+  phone: 619-123-4567
+  license_plate: MyString
+  user: michael
+
+two:
+  name: Bob
+  phone: 619-123-4567
+  license_plate: MyString
+  user: michael
+
+smallest_lexi:
+  name: Aaaaa
+  phone: 619-123-4567
+  license_plate: MyString
+  user: michael
+
+three:
+  name: Zenu
+  phone: 619-123-4567
+  license_plate: MyString
+  user: michael
+
+<% 30.times do |n| %>
+customer_<%= n %>:
+  name: <%= Faker::Name.name %>
+  phone: 619-123-4567
+  license_plate: MyString
+  user: michael
+<% end %>

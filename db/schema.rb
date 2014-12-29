@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141229023355) do
+ActiveRecord::Schema.define(version: 20141229042735) do
+
+  create_table "customers", force: true do |t|
+    t.string   "name"
+    t.string   "phone"
+    t.string   "license_plate"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "customers", ["user_id", "name"], name: "index_customers_on_user_id_and_name"
+  add_index "customers", ["user_id"], name: "index_customers_on_user_id"
+
+  create_table "pdf_forms", force: true do |t|
+    t.text     "content"
+    t.integer  "customer_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "pdf_forms", ["customer_id", "created_at"], name: "index_pdf_forms_on_customer_id_and_created_at"
+  add_index "pdf_forms", ["customer_id"], name: "index_pdf_forms_on_customer_id"
 
   create_table "queries", force: true do |t|
     t.string   "name"

@@ -65,5 +65,14 @@ class UserTest < ActiveSupport::TestCase
 
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?('')
-  end  
+  end
+
+  test "associated customers should be destroyed" do
+    @user.save
+    @user.customers.create!(name: "Example Name",  phone: "555-1234567",
+                license_plate: "ABC2345")
+    assert_difference 'Customer.count', -1 do
+      @user.destroy
+    end
+  end
 end

@@ -16,3 +16,12 @@ User.create!(name:  "Example User",
                password:              password,
                password_confirmation: password)
 end
+
+users = User.order(:name).take(6)
+50.times do
+  name  = Faker::Name.name
+  phone = "619-123-4567"
+  license_plate = "ABC4567"
+  users.each { |user| user.customers.create!(name: name,  phone: phone,
+                                              license_plate: license_plate) }
+end

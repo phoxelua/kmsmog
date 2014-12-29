@@ -1,0 +1,10 @@
+<li id="customer-<%= customer.id %>">
+  <span class="user">
+  	<%= customer.name %>
+  	<%= customer.phone %>
+  	<%= customer.license_plate %>  	
+  </span>
+  <span class="timestamp">
+    Created <%= time_ago_in_words(customer.created_at) %> ago.
+  </span>
+</li>
