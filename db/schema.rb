@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141228055305) do
+ActiveRecord::Schema.define(version: 20141229023355) do
 
   create_table "queries", force: true do |t|
     t.string   "name"
@@ -25,10 +25,11 @@ ActiveRecord::Schema.define(version: 20141228055305) do
     t.string   "name"
     t.string   "email"
     t.string   "organization"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "password_digest"
     t.string   "remember_digest"
+    t.boolean  "admin",           default: false
   end
 
 end
