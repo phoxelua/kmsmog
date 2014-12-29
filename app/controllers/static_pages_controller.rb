@@ -5,9 +5,6 @@ class StaticPagesController < ApplicationController
   def about
   end
 
-  def dashboard
-  end
-
   def help
-  end
+  end  
 end

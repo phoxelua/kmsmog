@@ -1,0 +1,22 @@
+<% provide(:title, 'Dashboard') %>
+<h1>Dashboard</h1>
+<div class="row">
+    <%= form_for [@user, @query] do |f| %>
+      <%= render 'shared/error_messages' %>
+	  <div class="col-md-3">
+	      <%= f.label :name %>
+	      <%= f.text_field :name, class: 'form-control' %>	  
+	  </div>
+	  <div class="col-md-3">
+	      <%= f.label :phone %>
+	      <%= f.text_field :phone, class: 'form-control' %>	  
+	  </div>
+	  <div class="col-md-3">
+	      <%= f.label :license_plate %>
+	      <%= f.text_field :license_plate, class: 'form-control' %>	  
+	  </div>
+	  <div class="col-md-3">
+      	<%= f.submit "Search", class: "btn btn-primary" %>	  
+	  </div>
+	<% end %>
+</div>
