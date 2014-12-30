@@ -2,6 +2,7 @@ class Customer < ActiveRecord::Base
   after_initialize :normalize
   before_validation :normalize
   belongs_to :user
+  has_many :pdf_forms, dependent: :destroy
   default_scope -> { order(name: :asc) }
   validates :user_id, presence: true
   validate :any_present?

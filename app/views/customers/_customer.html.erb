@@ -1,6 +1,7 @@
 <li id="customer-<%= customer.id %>">
+  <!-- <%= link_to customer_gravatar_for(customer, size: 10), customer %> -->
   <span class="user">
-  	<%= customer.name %>
+    <%= link_to customer.name, customer %>
   	<%= customer.phone %>
   	<%= customer.license_plate %>  	
   </span>

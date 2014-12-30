@@ -2,6 +2,11 @@ class CustomersController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
 
+  def show    
+    @customer = Customer.find(params[:id])
+    @pdf_forms = @customer.pdf_forms.paginate(page: params[:page])
+  end
+
   def create
     @customer = current_user.customers.build(customer_params)
     if @customer.save

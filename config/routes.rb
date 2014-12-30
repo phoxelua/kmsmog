@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'  
   get 'users/:id/dashboard' => 'users#dashboard', as: :dashboard
   resources :users
-  resources :customers,          only: [:create, :destroy]
+  resources :customers,          only: [:create, :destroy, :show]
+  resources :pdf_forms
 end

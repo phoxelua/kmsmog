@@ -25,3 +25,9 @@ users = User.order(:name).take(6)
   users.each { |user| user.customers.create!(name: name,  phone: phone,
                                               license_plate: license_plate) }
 end
+
+customers = Customer.order(:created_at).take(6)
+10.times do
+  content = Faker::Lorem.sentence(5)
+  customers.each { |customer| customer.pdf_forms.create!(content: content) }
+end

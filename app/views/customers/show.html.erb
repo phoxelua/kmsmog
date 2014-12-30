@@ -1,0 +1,20 @@
+<% provide(:title, @customer.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="customer_info">
+      <h1>
+        <%= customer_gravatar_for @customer %>
+        <%= @customer.name %>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <% if @customer.pdf_forms.any? %>
+      <h3>PDF Forms (<%= @customer.pdf_forms.count %>)</h3>
+      <ol class="pdf_forms">
+        <%= render @pdf_forms %>
+      </ol>
+      <%= will_paginate @pdf_forms %>
+    <% end %>
+  </div>
+</div>

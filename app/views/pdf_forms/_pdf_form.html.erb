@@ -1,0 +1,6 @@
+<li id="pdf_form-<%= pdf_form.id %>">
+  <span class="content"><%= pdf_form.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(pdf_form.created_at) %> ago.
+  </span>
+</li>

@@ -51,4 +51,12 @@ class CustomerTest < ActiveSupport::TestCase
   test "order should be alphabetical first" do
     assert_equal Customer.first,customers(:smallest_lexi)
   end
+
+  test "associated pdf_forms should be destroyed" do
+    @customer.save
+    @customer.pdf_forms.create!(content: "Lorem ipsum")
+    assert_difference 'PdfForm.count', -1 do
+      @customer.destroy
+    end
+  end   
 end
