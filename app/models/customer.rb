@@ -3,7 +3,7 @@ class Customer < ActiveRecord::Base
   before_validation :normalize
   belongs_to :user
   # attr_accessor :pdf_forms_attributes
-  has_many :pdf_forms, dependent: :destroy, :class_name => "PdfForm::Form"
+  has_many :pdf_forms, dependent: :destroy#, :class_name => "PdfForm::Form"
   accepts_nested_attributes_for :pdf_forms
   default_scope -> { order(name: :asc) }
   validates :user_id, presence: true
