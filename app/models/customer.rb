@@ -2,7 +2,9 @@ class Customer < ActiveRecord::Base
   after_initialize :normalize
   before_validation :normalize
   belongs_to :user
-  has_many :pdf_forms, dependent: :destroy
+  # attr_accessor :pdf_forms_attributes
+  has_many :pdf_forms, dependent: :destroy, :class_name => "PdfForm::Form"
+  accepts_nested_attributes_for :pdf_forms
   default_scope -> { order(name: :asc) }
   validates :user_id, presence: true
   validate :any_present?
@@ -24,13 +26,14 @@ class Customer < ActiveRecord::Base
 	  			area_code = "858"
 	  		end
 	  		self.phone = area_code + self.phone[1..-1]
-	 	elsif self.phone.length == 10
-	 		# do nothing for now
-	 	else
-	 		# do nothing for now
-	 	end
-	end
+	 	  elsif self.phone.length == 10
+	 		  # do nothing for now
+	 	  else
+	 		  # do nothing for now
+	 	  end
+	  end
   end
+
 
   # Check if any forms are present
   def any_present?
@@ -38,4 +41,5 @@ class Customer < ActiveRecord::Base
       errors.add :base, "You must fill in at least one field"
     end
   end  
+
 end
