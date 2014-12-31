@@ -7,13 +7,18 @@ class CustomersController < ApplicationController
     @pdf_forms = @customer.pdf_forms.paginate(page: params[:page])
   end
 
+  def new
+    @customer = current_user.customers.new(customer_params)
+  end
+
   def create
-    @customer = current_user.customers.build(customer_params)
+    @customer = current_user.customers.new(customer_params)
     if @customer.save
       flash[:success] = "Customer created!"
       redirect_to root_url
+      # redirect_to @customer
     else
-      render 'static_pages/home'
+      render 'new'
     end
   end
 

@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'  
-  get 'users/:id/dashboard' => 'users#dashboard', as: :dashboard
+  # get 'users/:id/dashboard' => 'users#dashboard', as: :dashboard
+  post 'customers' => 'customers#create', as: :new_customers # not working right now
   resources :users
   resources :customers,          only: [:create, :destroy, :show]
   resources :pdf_forms
