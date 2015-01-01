@@ -6,7 +6,7 @@ class CreatePdfForms < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-	add_index :pdf_forms, [:customer_id, :created_at]
+    add_index :pdf_forms, [:customer_id, :created_at]
     add_foreign_key :pdf_forms, :customers
   end
 end

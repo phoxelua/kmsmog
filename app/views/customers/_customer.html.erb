@@ -1,14 +1,13 @@
 <li id="customer-<%= customer.id %>">
-  <!-- <%= link_to customer_gravatar_for(customer, size: 10), customer %> -->
   <span class="user">
-    <%= link_to customer.name, customer %>
+    <%= link_to customer.name, user_customer_path(@user, customer) %>
   	<%= customer.phone %>
   	<%= customer.license_plate %>  	
   </span>
   <span class="timestamp">
     Created <%= time_ago_in_words(customer.created_at) %> ago.
     <% if current_user?(customer.user) %>
-      <%= link_to "delete", customer, method: :delete,
+      <%= link_to "delete", user_customer_path(@user, customer), method: :delete,
                                        data: { confirm: "You sure?" } %>
     <% end %>    
   </span>

@@ -10,10 +10,10 @@ class PdfFormTest < ActiveSupport::TestCase
     assert @pdf_form.valid?
   end
 
-  test "customer id should be present" do
-    @pdf_form.customer_id = nil
-    assert_not @pdf_form.valid?
-  end
+  # test "customer id should be present" do
+  #   @pdf_form.customer_id = nil
+  #   assert_not @pdf_form.valid?
+  # end
 
   test "content should be present " do
     @pdf_form.content = "   "

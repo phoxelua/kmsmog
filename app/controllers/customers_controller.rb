@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
-  before_action :correct_user,   only: :destroy
+  before_action :logged_in_user, only: [:create, :destroy, :new]
+  before_action :correct_user,   only: [:destroy, :new, :create]
 
   def show    
     @customer = Customer.find(params[:id])
@@ -8,13 +8,15 @@ class CustomersController < ApplicationController
   end
 
   def new
-    @customer = current_user.customers.new(customer_params)
-    @pdf_form = @customer.pdf_forms.build 
+    @user = current_user
+    @customer = @user.customers.build
+    @pdf_form = @customer.pdf_forms.build
   end
 
   def create
-    @customer = current_user.customers.new(customer_params)
-    @pdf_form = @customer.pdf_forms.build
+    @user = current_user
+    @customer = @user.customers.new(customer_params)
+    @pdf_form = @customer.pdf_forms.build(content: pdf_params)
     if @customer.save
       flash[:success] = "Customer created!"
       redirect_to root_url
@@ -25,18 +27,27 @@ class CustomersController < ApplicationController
   end
 
   def destroy
-    @micropost.destroy
-    flash[:success] = "Micropost deleted"
+    @customer.destroy
+    flash[:success] = "Customer deleted"
     redirect_to request.referrer || root_url    
   end
 
   private
 
     def customer_params
-      params.require(:customer).permit!()
+      # params.permit(:user_id)
+      # params.require(:customer).permit!()
       # causes wierd errror
+      params.require(:customer).permit(:name, :phone, :license_plate)
       # params.require(:customer).permit(:name, :phone, :license_plate, 
-      #           pdf_forms_attributes: [:id , {form: :email}])
+                # pdf_forms_attributes: [:id , {formy: :email}])
+    end
+
+    def pdf_params
+      params.require(:customer).require(:pdf_forms_attributes).require("0").require(:formy)
+      # params.require(:customer).except!(:name, :phone, :license_plate)
+      #               .permit(pdf_forms_attributes: [:id , {formy: [ :emaily, :phone]}])
+                    # .permit(pdf_forms_attributes: [{id: [:formy]}])
     end
     
     def correct_user
