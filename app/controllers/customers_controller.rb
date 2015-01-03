@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy, :new]
-  before_action :correct_user,   only: [:destroy, :new, :create]
+  before_action :correct_user,   only: [:destroy]
 
   def show    
     @customer = Customer.find(params[:id])

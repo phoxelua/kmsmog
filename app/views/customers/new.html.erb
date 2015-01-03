@@ -1,28 +1,130 @@
 <% provide(:title, 'Sign up') %>
-<h1>New Customer</h1>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@customer, :url => user_customers_path(@user, @customer)) do |customer| %>
-
+<center>
+  <h1>New Customer</h1>
+</center>
+<%= form_for(@customer, :url => user_customers_path(@user, @customer)) do |customer| %>
+  <%= customer.fields_for :pdf_forms do |pdf_form_form| %>
+    <div class="row">
       <%= render 'shared/error_messages', object: customer.object %>
-
-      <%= customer.label :name %>
-      <%= customer.text_field :name, :value => "ey", class: 'form-control' %>
-
-      <%= customer.label :phone %>
-      <%= customer.text_field :phone, :value => "555-555-5555", class: 'form-control' %>
-
-      <%= customer.label :license_plate %>
-      <%= customer.text_field :license_plate, :value => "ey", class: 'form-control' %>
-
-      <%= customer.fields_for :pdf_forms do |pdf_form_form| %>
-        <%= pdf_form_form.label :"formy[emaily]", "Emaily"%>
-        <%= pdf_form_form.text_field :"formy[emaily]", :value => "ey" %>      
-      <% end %>
-
-
-      <%= customer.submit "Create a new customer", class: "btn btn-primary" %>
-    <% end %>
+      <h2> Basic Information </h2>
+      <div class="col-md-2">
+        <%= customer.label :name %>
+        <%= customer.text_field :name, :value => "John Smith", class: 'form-control' %>
+      </div>
+      <div class="col-md-2">    
+        <%= customer.label :phone %>
+        <%= customer.text_field :phone, :value => "555-555-5555", class: 'form-control' %>
+      </div>
+      <div class="col-md-2">
+        <%= customer.label :license_plate %>
+        <%= customer.text_field :license_plate, :value => "ABCD1234", class: 'form-control' %>
+      </div>
+      <div class="col-md-2">
+        <%= pdf_form_form.label :"formy[odo]", "Odo"%>
+        <%= pdf_form_form.text_field :"formy[odo]", :value => nil, class: 'form-control' %>
+      </div>
+      <div class="col-md-2">
+        <%= pdf_form_form.label :"formy[estimate]", "Original Estimate"%>
+        <%= pdf_form_form.text_field :"formy[estimate]", :value => nil, class: 'form-control' %>
+      </div>
+      <div class="col-md-2">
+        <%= pdf_form_form.label :"formy[invoice_no]", "Invoice #"%>
+        <%= pdf_form_form.text_field :"formy[invoice_no]", :value => nil, class: 'form-control' %>
+      </div>      
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <%= pdf_form_form.label :"formy[year]", "Year"%>
+        <%= pdf_form_form.text_field :"formy[year]", :value => nil, class: 'form-control'%>
+      </div>
+      <div class="col-md-3">
+        <%= pdf_form_form.label :"formy[make]", "Make"%>
+        <%= pdf_form_form.text_field :"formy[make]", :value => nil, class: 'form-control'%>
+      </div>
+      <div class="col-md-2">
+        <%= pdf_form_form.label :"formy[model]", "Model"%>
+        <%= pdf_form_form.text_field :"formy[model]", :value => nil, class: 'form-control'%>
+      </div>
+      <div class="col-md-2">
+        <%= pdf_form_form.label :"formy[trim]", "Trim/Note"%>
+        <%= pdf_form_form.text_field :"formy[trim]", :value => nil, class: 'form-control'%>
+      </div>
+      <div class="col-md-2">
+        <%= pdf_form_form.label :"formy[engine]", "Engine"%>
+        <%= pdf_form_form.text_field :"formy[engine]", :value => nil, class: 'form-control'%>
+      </div>            
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="toggle-optional">
+          <%= check_box_tag 'show_optional', '', false %>
+          <%= label_tag 'show_optional', 'Show optional fields?'%>
+        </div>
+      </div>
+    </div>
+    <div class="optional">
+      <div class="row">
+        <h2>Additional Information</h2>
+        <div class="col-md-5">
+          <%= pdf_form_form.label :"formy[address]", "Address"%>
+          <%= pdf_form_form.text_field :"formy[address]", :value => nil, class: 'form-control'%>
+        </div>
+        <div class="col-md-3">
+          <%= pdf_form_form.label :"formy[email]", "Email"%>
+          <%= pdf_form_form.text_field :"formy[email]", :value => nil, class: 'form-control'%>
+        </div>
+        <div class="col-md-2">
+          <%= pdf_form_form.label :"formy[vin]", "VIN"%>
+          <%= pdf_form_form.text_field :"formy[vin]", :value => nil, class: 'form-control'%>
+        </div>
+        <div class="col-md-2">
+          <%= pdf_form_form.label :"formy[written_by]", "Written By"%>
+          <%= pdf_form_form.text_field :"formy[written_by]", :value => nil, class: 'form-control'%>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <h2>Repair</h2>
+      <div class="col-md-1">
+        <%= pdf_form_form.label :"formy[op]", "OP"%>
+        <%= pdf_form_form.text_field :"formy[op]", :value => nil, class: "form-control"%>
+      </div>
+      <div class="col-md-9">
+        <%= pdf_form_form.label :"formy[roi]", "Repair Order Instructions"%>
+        <%= pdf_form_form.text_field :"formy[roi]", :value => nil, class: "form-control"%>
+      </div>
+      <div class="col-md-2">
+        <%= pdf_form_form.label :"formy[model]", "SVC CHG"%>
+        <%= pdf_form_form.text_field :"formy[model]", :value => nil, class: "form-control"%>
+      </div>
+    </div>    
+  <% end %>
+  <div class="col-md-6 col-md-offset-3">
+    <%= customer.submit "Create a new customer", class: "btn btn-primary" %>
   </div>
-</div>
+<% end %>
+<script type="text/javascript">
+$(document).ready(function () {
+    var ckbox = $('#show_optional');
+
+    $('#show_optional').on('click',function () {
+      if (ckbox.is(':checked')) {
+        $('.optional').show();
+      } else {
+         $('.optional').hide();
+      }
+    });
+
+    $('#more_roi').click(function() {
+    // insert a SPAN tag with class="spn" at the end in all DIVs with class="cls"
+    $('div.cls').append('<span class="spn">END.</span>');
+  });
+});
+$(function() {
+    if($("#show_optional").is(":checked")){
+       $('.optional').show();   
+    }else{
+       $('.optional').hide();
+    }
+}); 
+</script>
