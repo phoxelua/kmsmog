@@ -54,7 +54,7 @@ class CustomerTest < ActiveSupport::TestCase
 
   test "associated pdf_forms should be destroyed" do
     @customer.save
-    @customer.pdf_forms.create!(content: "Lorem ipsum")
+    @customer.pdf_forms.create!(content: {"odo" => 123, "estimate" => 1, "invoice_no" => 10})
     assert_difference 'PdfForm.count', -1 do
       @customer.destroy
     end

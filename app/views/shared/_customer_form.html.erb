@@ -2,17 +2,17 @@
     <%= render 'shared/error_messages', object: customer.object %>
     	<div class="col-md-4">
     	  	<div class="field">
-      		<%= customer.text_field :name, placeholder: "John Smith" %>
+      		<%= customer.text_field :name, placeholder: "John Smith", class: 'form-control' %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="field">
-          <%= customer.text_field :phone, placeholder: "555-123-4567" %>
+          <%= customer.text_field :phone, placeholder: "555-123-4567", class: 'form-control' %>
         </div>      
       </div>
       <div class="col-md-4">
         <div class="field">
-          <%= customer.text_field :license_plate, placeholder: "ABC1234" %>
+          <%= customer.text_field :license_plate, placeholder: "ABC1234", class: 'form-control' %>
         </div>
       </div>
       <div class="col-md-4">

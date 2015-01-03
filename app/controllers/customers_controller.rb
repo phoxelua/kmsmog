@@ -21,7 +21,7 @@ class CustomersController < ApplicationController
     @customer = @user.customers.new(customer_params)
     puts "pdf_params"
     puts pdf_params
-    @pdf_form = @customer.pdf_forms.build(content: pdf_params)
+    @pdf_form = @customer.pdf_forms.build(content: pdf_params.merge(customer_params))
     puts "repair_params"
     puts repair_params
     repair_params.each_value do |value|
