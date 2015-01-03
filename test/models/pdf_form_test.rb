@@ -23,4 +23,13 @@ class PdfFormTest < ActiveSupport::TestCase
   test "order should be most recent first" do
     assert_equal PdfForm.first, pdf_forms(:most_recent)
   end
+
+  test "pdf_form should not have more than 12 repairs" do
+    13.times {
+      @pdf_form.repairs.build(op: "idk what this is",
+                    instruction: "pls fix dis",
+                    svc: 12)  
+    }   
+    assert_not @pdf_form.valid?
+  end  
 end

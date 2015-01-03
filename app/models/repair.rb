@@ -1,10 +1,5 @@
 class Repair < ActiveRecord::Base
   belongs_to :pdf_form
-  before_validation :normalize
-
-  def normalize
-  	puts "REPAIR NORMALIZZE >>>"
-  	p self
-  end
-
+  validates :instruction, presence: true, length: { maximum: 100 }
+  validates :svc, presence: true
 end

@@ -24,12 +24,15 @@ class CustomersController < ApplicationController
     @pdf_form = @customer.pdf_forms.build(content: pdf_params)
     puts "repair_params"
     puts repair_params
-    @repair = @pdf_form.repairs.build(pdf_params)
+    repair_params.each_value do |value|
+      puts "value: #{value}"
+      @pdf_form.repairs.build(value)
+    end
+
     puts "trying to create!!!!!!!!"
     p @user
     p @customer
     p @pdf_form
-    p @repair
     if @customer.save
       flash[:success] = "Customer created!"
       redirect_to root_url
@@ -48,15 +51,11 @@ class CustomersController < ApplicationController
   private
 
     def customer_params
-      # params.permit(:user_id)
-      # params.require(:customer).permit!()
-      # causes wierd errror
       params.require(:customer).permit(:name, :phone, :license_plate)
-      # params.require(:customer).permit(:name, :phone, :license_plate, 
-                # pdf_forms_attributes: [:id , {formy: :email}])
     end
 
     def pdf_params
+      # xxx require "0" since only 1 pdf allowed per customer creation...find better way xxx
       params.require(:customer).require(:pdf_forms_attributes).require("0").require(:formy)
       # params.require(:customer).except!(:name, :phone, :license_plate)
       #               .permit(pdf_forms_attributes: [:id , {formy: [ :emaily, :phone]}])
