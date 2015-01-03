@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  op: MyString
+  instruction: MyText
+  svc: 1
+  pdf_form_id: 
+
+two:
+  op: MyString
+  instruction: MyText
+  svc: 1
+  pdf_form_id: 

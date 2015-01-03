@@ -11,12 +11,25 @@ class CustomersController < ApplicationController
     @user = current_user
     @customer = @user.customers.build
     @pdf_form = @customer.pdf_forms.build
+    2.times { @pdf_form.repairs.build }
   end
 
   def create
     @user = current_user
+    puts "customer_params"
+    puts customer_params
     @customer = @user.customers.new(customer_params)
+    puts "pdf_params"
+    puts pdf_params
     @pdf_form = @customer.pdf_forms.build(content: pdf_params)
+    puts "repair_params"
+    puts repair_params
+    @repair = @pdf_form.repairs.build(pdf_params)
+    puts "trying to create!!!!!!!!"
+    p @user
+    p @customer
+    p @pdf_form
+    p @repair
     if @customer.save
       flash[:success] = "Customer created!"
       redirect_to root_url
@@ -49,6 +62,11 @@ class CustomersController < ApplicationController
       #               .permit(pdf_forms_attributes: [:id , {formy: [ :emaily, :phone]}])
                     # .permit(pdf_forms_attributes: [{id: [:formy]}])
     end
+
+    def repair_params
+      params.require(:customer).require(:pdf_forms_attributes).require("0").require(:repairs_attributes)
+    end
+
     
     def correct_user
       @customer = current_user.customers.find_by(id: params[:id])

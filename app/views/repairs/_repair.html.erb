@@ -1,0 +1,13 @@
+<li id="repair-<%= repair.id %>">
+  <span class="user">
+    <% if false %>
+      <%= link_to repair.id, user_customer_pdf_form_repair_path(params[:user_id], params[:customer_id], @pdf_form, repair) %>
+    <% end %>
+    <%= repair.op %>
+  	<%= repair.instruction %>
+    <%= repair.svc %>    
+  </span>
+  <span class="timestamp">
+    Created <%= time_ago_in_words(repair.created_at) %> ago.
+  </span>
+</li>

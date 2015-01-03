@@ -19,41 +19,11 @@
         <%= customer.label :license_plate %>
         <%= customer.text_field :license_plate, :value => "ABCD1234", class: 'form-control' %>
       </div>
-      <div class="col-md-2">
-        <%= pdf_form_form.label :"formy[odo]", "Odo"%>
-        <%= pdf_form_form.text_field :"formy[odo]", :value => nil, class: 'form-control' %>
-      </div>
-      <div class="col-md-2">
-        <%= pdf_form_form.label :"formy[estimate]", "Original Estimate"%>
-        <%= pdf_form_form.text_field :"formy[estimate]", :value => nil, class: 'form-control' %>
-      </div>
-      <div class="col-md-2">
-        <%= pdf_form_form.label :"formy[invoice_no]", "Invoice #"%>
-        <%= pdf_form_form.text_field :"formy[invoice_no]", :value => nil, class: 'form-control' %>
-      </div>      
+      <%= render "pdf_one_fields", :f => pdf_form_form %>
     </div>
-    <div class="row">
-      <div class="col-md-3">
-        <%= pdf_form_form.label :"formy[year]", "Year"%>
-        <%= pdf_form_form.text_field :"formy[year]", :value => nil, class: 'form-control'%>
-      </div>
-      <div class="col-md-3">
-        <%= pdf_form_form.label :"formy[make]", "Make"%>
-        <%= pdf_form_form.text_field :"formy[make]", :value => nil, class: 'form-control'%>
-      </div>
-      <div class="col-md-2">
-        <%= pdf_form_form.label :"formy[model]", "Model"%>
-        <%= pdf_form_form.text_field :"formy[model]", :value => nil, class: 'form-control'%>
-      </div>
-      <div class="col-md-2">
-        <%= pdf_form_form.label :"formy[trim]", "Trim/Note"%>
-        <%= pdf_form_form.text_field :"formy[trim]", :value => nil, class: 'form-control'%>
-      </div>
-      <div class="col-md-2">
-        <%= pdf_form_form.label :"formy[engine]", "Engine"%>
-        <%= pdf_form_form.text_field :"formy[engine]", :value => nil, class: 'form-control'%>
-      </div>            
-    </div>
+
+    <%= render "pdf_two_fields", :f => pdf_form_form %>
+
     <div class="row">
       <div class="col-md-12">
         <div class="toggle-optional">
@@ -63,41 +33,15 @@
       </div>
     </div>
     <div class="optional">
-      <div class="row">
-        <h2>Additional Information</h2>
-        <div class="col-md-5">
-          <%= pdf_form_form.label :"formy[address]", "Address"%>
-          <%= pdf_form_form.text_field :"formy[address]", :value => nil, class: 'form-control'%>
-        </div>
-        <div class="col-md-3">
-          <%= pdf_form_form.label :"formy[email]", "Email"%>
-          <%= pdf_form_form.text_field :"formy[email]", :value => nil, class: 'form-control'%>
-        </div>
-        <div class="col-md-2">
-          <%= pdf_form_form.label :"formy[vin]", "VIN"%>
-          <%= pdf_form_form.text_field :"formy[vin]", :value => nil, class: 'form-control'%>
-        </div>
-        <div class="col-md-2">
-          <%= pdf_form_form.label :"formy[written_by]", "Written By"%>
-          <%= pdf_form_form.text_field :"formy[written_by]", :value => nil, class: 'form-control'%>
-        </div>
-      </div>
+      <%= render "optional_fields", :f => pdf_form_form %>
     </div>
+
     <div class="row">
       <h2>Repair</h2>
-      <div class="col-md-1">
-        <%= pdf_form_form.label :"formy[op]", "OP"%>
-        <%= pdf_form_form.text_field :"formy[op]", :value => nil, class: "form-control"%>
-      </div>
-      <div class="col-md-9">
-        <%= pdf_form_form.label :"formy[roi]", "Repair Order Instructions"%>
-        <%= pdf_form_form.text_field :"formy[roi]", :value => nil, class: "form-control"%>
-      </div>
-      <div class="col-md-2">
-        <%= pdf_form_form.label :"formy[model]", "SVC CHG"%>
-        <%= pdf_form_form.text_field :"formy[model]", :value => nil, class: "form-control"%>
-      </div>
-    </div>    
+    </div>
+    <%= render "pdf_three_fields", :f => pdf_form_form %>
+    <p><%= link_to_add_fields "+ Add row", pdf_form_form, :repairs %></p>
+
   <% end %>
   <div class="col-md-6 col-md-offset-3">
     <%= customer.submit "Create a new customer", class: "btn btn-primary" %>
@@ -105,6 +49,12 @@
 <% end %>
 <script type="text/javascript">
 $(document).ready(function () {
+    if($("#show_optional").is(":checked")){
+       $('.optional').show();   
+    }else{
+       $('.optional').hide();
+    }
+
     var ckbox = $('#show_optional');
 
     $('#show_optional').on('click',function () {
@@ -115,16 +65,8 @@ $(document).ready(function () {
       }
     });
 
-    $('#more_roi').click(function() {
-    // insert a SPAN tag with class="spn" at the end in all DIVs with class="cls"
-    $('div.cls').append('<span class="spn">END.</span>');
-  });
+    $('.delete_repair').click(function(){
+        $(this).closest('.row').remove()
+    });   
 });
-$(function() {
-    if($("#show_optional").is(":checked")){
-       $('.optional').show();   
-    }else{
-       $('.optional').hide();
-    }
-}); 
 </script>

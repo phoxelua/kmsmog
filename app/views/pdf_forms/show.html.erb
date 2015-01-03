@@ -1,0 +1,20 @@
+<% provide(:title, "@pdf_form.name") %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="pdf_info">
+      <h1>
+        <%= pdf_gravatar_for @pdf_form %>
+        <%= @pdf_form.content %>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <% if @pdf_form.repairs.any? %>
+      <h3>Repairs (<%= @pdf_form.repairs.count %>)</h3>
+      <ol class="repairs">
+        <%= render @repairs %>
+      </ol>
+      <%= will_paginate @repairs %>
+    <% end %>
+  </div>
+</div>

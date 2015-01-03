@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   # get "users/:user_id/customers/:id" => 'customers#new', as: :new_customer
   resources :users do
     resources :customers,          only: [:create, :destroy, :show, :new] do
-      resources :pdf_forms
+      resources :pdf_forms do
+        resources :repairs,        only: [:create, :destroy, :show]
+      end
     end
   end
 end

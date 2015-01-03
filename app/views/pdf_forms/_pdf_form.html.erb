@@ -1,4 +1,7 @@
 <li id="pdf_form-<%= pdf_form.id %>">
+  <span class="user">
+    <%= link_to "asdf", user_customer_pdf_form_path(params[:user_id], @customer, pdf_form) %>	
+  </span>
   <span class="content"><%= pdf_form.content %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(pdf_form.created_at) %> ago.
