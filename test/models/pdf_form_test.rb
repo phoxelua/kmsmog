@@ -26,7 +26,7 @@ class PdfFormTest < ActiveSupport::TestCase
 
   test "pdf_form should not have more than 12 repairs" do
     13.times {
-      @pdf_form.repairs.build(op: "idk what this is",
+      @pdf_form.repairs.build(op: 1,
                     instruction: "pls fix dis",
                     svc: 12)  
     }   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150103005749) do
+ActiveRecord::Schema.define(version: 20150103222010) do
 
   create_table "customers", force: true do |t|
     t.string   "name"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20150103005749) do
   end
 
   create_table "repairs", force: true do |t|
-    t.string   "op"
+    t.integer  "op"
     t.text     "instruction"
     t.integer  "svc"
     t.integer  "pdf_form_id"

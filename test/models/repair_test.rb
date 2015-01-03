@@ -3,7 +3,7 @@ require 'test_helper'
 class RepairTest < ActiveSupport::TestCase
   def setup
     @pdf_form = pdf_forms(:orange)
-    @repair = @pdf_form.repairs.build(op: "idk what this is",
+    @repair = @pdf_form.repairs.build(op: 1,
     								instruction: "pls fix dis",
     								svc: 12)  
   end
