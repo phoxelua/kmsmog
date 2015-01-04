@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150103222010) do
+ActiveRecord::Schema.define(version: 20150104005615) do
 
   create_table "customers", force: true do |t|
     t.string   "name"
@@ -24,6 +24,21 @@ ActiveRecord::Schema.define(version: 20150103222010) do
 
   add_index "customers", ["user_id", "name"], name: "index_customers_on_user_id_and_name"
   add_index "customers", ["user_id"], name: "index_customers_on_user_id"
+
+  create_table "makes", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "models", force: true do |t|
+    t.string   "name"
+    t.integer  "make_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "models", ["make_id"], name: "index_models_on_make_id"
 
   create_table "pdf_forms", force: true do |t|
     t.text     "content"
@@ -54,6 +69,12 @@ ActiveRecord::Schema.define(version: 20150103222010) do
 
   add_index "repairs", ["pdf_form_id"], name: "index_repairs_on_pdf_form_id"
 
+  create_table "trims", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
@@ -64,5 +85,14 @@ ActiveRecord::Schema.define(version: 20150103222010) do
     t.string   "remember_digest"
     t.boolean  "admin",           default: false
   end
+
+  create_table "years", force: true do |t|
+    t.string   "name"
+    t.integer  "model_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "years", ["model_id"], name: "index_years_on_model_id"
 
 end

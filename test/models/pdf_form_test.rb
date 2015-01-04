@@ -16,7 +16,7 @@ class PdfFormTest < ActiveSupport::TestCase
   # end
 
   test "content should be present " do
-    @pdf_form.content = "   "
+    @pdf_form.content = {}
     assert_not @pdf_form.valid?
   end
 

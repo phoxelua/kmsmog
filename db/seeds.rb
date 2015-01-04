@@ -5,7 +5,7 @@ User.create!(name:  "Example User",
              password_confirmation: "foobar",
              admin: true)
 
-99.times do |n|
+10.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   organization = name
@@ -17,8 +17,8 @@ User.create!(name:  "Example User",
                password_confirmation: password)
 end
 
-users = User.order(:name).take(6)
-50.times do
+users = User.order(:name).take(5)
+5.times do
   name  = Faker::Name.name
   phone = "619-123-4567"
   license_plate = "ABC4567"
@@ -26,8 +26,35 @@ users = User.order(:name).take(6)
                                               license_plate: license_plate) }
 end
 
-customers = Customer.order(:created_at).take(6)
-10.times do
-  content = Faker::Lorem.sentence(5)
+customers = Customer.order(:created_at)
+5.times do
+  content = {"odo" => 123, "estimate" => 1, "invoice_no" => 112}
   customers.each { |customer| customer.pdf_forms.create!(content: content) }
 end
+
+pdfs = PdfForm.order(:created_at)
+2.times do
+  op = Faker::Number.digit 
+  instruction = Faker::Lorem.sentence
+  svc = Faker::Number.digit
+  pdfs.each { |pdf| pdf.repairs.create!(op: op, instruction: instruction,
+                                                      svc: svc) }
+end
+
+3.times do |x|
+  make  = Make.find_or_create_by(:name => "make #{x}")
+  3.times do |y|
+    model = Model.find_or_create_by(:name => "Model #{x}.#{y}", :make => make)
+    3.times do |z|
+      Year.find_or_create_by(:name => "Year #{x}.#{y}.#{z}",  :model => model)
+    end
+  end
+end
+
+10.times do |n|
+  name  = Faker::Name.name
+  Trim.create!(name: name)
+end
+
+
+

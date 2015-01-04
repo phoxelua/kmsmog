@@ -1,4 +1,4 @@
-<% provide(:title, 'Sign up') %>
+<% provide(:title, 'New Customer') %>
 <center>
   <h1>New Customer</h1>
 </center>
@@ -49,6 +49,13 @@
 <% end %>
 <script type="text/javascript">
 $(document).ready(function () {
+
+    $('.combobox').combobox();
+
+    // var suck = '<input type="text" autocomplete="off" placeholder="" class="combobox">'
+    // var good = '<input type="text" autocomplete="off" placeholder="" class="form-control">'
+    // $(suck).replaceWith(good);
+
     if($("#show_optional").is(":checked")){
        $('.optional').show();   
     }else{
@@ -67,6 +74,8 @@ $(document).ready(function () {
 
     $('.delete_repair').click(function(){
         $(this).closest('.row').remove()
-    });   
+    });
+
+
 });
 </script>

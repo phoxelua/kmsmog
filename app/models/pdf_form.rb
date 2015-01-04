@@ -1,6 +1,6 @@
 class PdfForm < ActiveRecord::Base
   # attr_accessor :content
-  # serialize :content, JSON #not working for some fucking reason
+  serialize :content, Hash #not working for some fucking reason
   # attr_accessor :repair_hash
   belongs_to :customer, :class_name => "Customer", :foreign_key => 'Customer_id'
   validate :repair_count_within_limit, :on => :create
@@ -12,11 +12,16 @@ class PdfForm < ActiveRecord::Base
   validate :check_fields
 
   def check_fields
-    h = eval(self.content)
-    if h.nil?
-      errors.add(:base, "Content be present")
-      return
-    end
+    # p self.content
+    # p self.content.class.name
+
+    h = self.content
+
+    # h = eval(self.content)
+    # if h.nil?
+    #   errors.add(:base, "Content be present")
+    #   return
+    # end
 
     if !h.key?("odo") or h["odo"].nil? or h["odo"].to_s.empty?
       errors.add(:odo, "field must be present")

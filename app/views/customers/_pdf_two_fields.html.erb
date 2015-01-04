@@ -4,12 +4,16 @@
     <%= f.text_field :"formy[year]", :value => nil, class: 'form-control'%>   
   </div>
   <div class="col-md-3">
-    <%= f.label :"formy[make]", "Make"%>
-    <%= f.text_field :"formy[make]", :value => nil, class: 'form-control'%>
+    <%= f.label :"formy[make]", "Make" %><br />
+    <div class="make-dropdown">
+      <%= f.collection_select :"formy[make]", Make.order(:name), :id, :name, {:selected => "whatever_value", include_blank: true}, class: 'combobox form-control' %> 
+    </div>
   </div>
   <div class="col-md-2">
-    <%= f.label :"formy[model]", "Model"%>
-    <%= f.text_field :"formy[model]", :value => nil, class: 'form-control'%>
+    <%= f.label :"formy[model]", "Model" %><br />
+    <div class="model-dropdown">
+      <%= f.grouped_collection_select :"formy[model]", Make.order(:name), :models, :name, :id, :name, {:selected => "whatever_value", include_blank: true}, class: 'form-control' %>    
+    </div>
   </div>
   <div class="col-md-2">
     <%= f.label :"formy[trim]", "Trim/Note"%>
