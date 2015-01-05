@@ -44,6 +44,7 @@ def get_data_fields():
 		with open('data_fields_new.json', 'wb') as fp:
 		    json.dump(data_fields_dict, fp)
 
+	print data_fields_dict.keys()
 	return data_fields_dict
 
 def get_value(line):

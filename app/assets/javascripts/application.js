@@ -15,6 +15,8 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+//= require select2
+//= require selectize
 
 
 function add_fields(link, association, content) {

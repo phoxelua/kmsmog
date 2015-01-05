@@ -28,7 +28,7 @@ end
 
 customers = Customer.order(:created_at)
 5.times do
-  content = {"odo" => 123, "estimate" => 1, "invoice_no" => 112}
+  content = {"odo" => 123, "original_estimate" => 1, "invoice" => 112}
   customers.each { |customer| customer.pdf_forms.create!(content: content) }
 end
 

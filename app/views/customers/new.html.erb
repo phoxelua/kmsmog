@@ -50,17 +50,33 @@
 <script type="text/javascript">
 $(document).ready(function () {
 
-    $('.combobox').combobox();
 
-    // var suck = '<input type="text" autocomplete="off" placeholder="" class="combobox">'
-    // var good = '<input type="text" autocomplete="off" placeholder="" class="form-control">'
-    // $(suck).replaceWith(good);
+    $('.make-d').selectize({
+        create: true,
+        sortField: 'text',
+    });
+
+    $('.model-d').selectize({
+        create: true,
+        sortField: 'text',
+    });
+
+    $('.year-d').selectize({
+        create: true,
+        sortField: 'text',
+    });
+
+    // $('.model-dropdown > .selectize-control > .selectize-input').click()
+    // $('.model-dropdown > .selectize-control > .selectize-input').blur()
+    // $('#customer_name').focus();
+    
+
 
     if($("#show_optional").is(":checked")){
        $('.optional').show();   
     }else{
        $('.optional').hide();
-    }
+    };
 
     var ckbox = $('#show_optional');
 

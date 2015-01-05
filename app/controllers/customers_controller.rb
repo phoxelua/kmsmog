@@ -16,24 +16,13 @@ class CustomersController < ApplicationController
 
   def create
     @user = current_user
-    puts "customer_params"
-    puts customer_params
     @customer = @user.customers.new(customer_params)
-    puts "pdf_params"
-    puts pdf_params
     @pdf_form = @customer.pdf_forms.build(content: pdf_params.merge(customer_params))
-    puts "repair_params"
-    puts repair_params
     repair_params.each_value do |value|
-      puts "value: #{value}"
       @pdf_form.repairs.build(value)
     end
-
-    puts "trying to create!!!!!!!!"
-    p @user
-    p @customer
-    p @pdf_form
     if @customer.save
+      @pdf_form.fill @customer
       flash[:success] = "Customer created!"
       redirect_to root_url
       # redirect_to @customer
