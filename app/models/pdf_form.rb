@@ -50,22 +50,17 @@ class PdfForm < ActiveRecord::Base
       repairs_hash["Repairs"].push(repair.attributes)
     end
     
-    puts "all da repairs #{repairs_hash}"
-
     merged = self.content.merge(repairs_hash)
-    puts "all da content #{merged}"
 
     # xxx omg future me im so sowwy
 
     # pass data to python in form of json
-
     File.open(path + "temp_dict.json","w") do |f|
       f.write(merged.to_json)
     end
 
-    # puts "about to execute script" 
+    # run python script to create fdf and fill pdf
     system("cd #{path} && python2 fill.py") 
-    # puts "excuted script"
   end
 
 

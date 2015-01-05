@@ -1,0 +1,12 @@
+Fixes
+=====
++ Implement search and show results
+
++ Storing pdf files in S3 as well as locally in Dropbox
+
++ Remove deprecated code:
+	- gravatar for customers and pdfs...like wtf
+
++ Dependent dropdowns for year/make/model
+
++ Offline modes?

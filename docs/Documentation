@@ -1,0 +1,44 @@
+Documentation
+=============
+
+
+Rails
+=====
++ Dynamic dropdown menus:
+	https://www.youtube.com/watch?v=jO5SpYctA-s
+	https://github.com/railscasts/088-dynamic-select-menus-revised
+
+Car Make and Model DB
+=====================
++ https://github.com/n8barr/automotive-model-year-data/
+
+PDF Filling
+============
++ http://adamalbrecht.com/2014/01/31/pre-filling-pdf-form-templates-in-ruby-on-rails-with-pdftk/
++ http://micahroberson.com/generating-pdfs-from-templates-in-ruby-on-rails-and-heroku/
+
+Heroku
+=======
++ How to get RoR and python?
+	http://stackoverflow.com/questions/12850168/installing-a-gem-bundle-in-a-python-app-on-heroku
+	Use mutli buildpack:
+	heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi
+	repush changes (git commit --allow-empty -m "Empty commit"1)
+		put all buildpacks in .build
+			https://github.com/heroku/heroku-buildpack-ruby.git
+			https://github.com/heroku/heroku-buildpack-python.git
+
+	Need requirements.txt - not sure why but worked after deleting a bunch of libs
+
++ How to get pdftk on Heroku?
+	Copy the source binaries and set the environment vars
+		http://micahroberson.com/generating-pdfs-from-templates-in-ruby-on-rails-and-heroku/
+		http://derekbarber.ca/blog/2014/11/20/using-pdftk-with-rails-on-heroku/
+			heroku config:set LD_LIBRARY_PATH=/app/.heroku/vendor/lib:/app/vendor/pdftk/lib
+			heroku config:set PATH=/app/.heroku/python/bin:/usr/local/bin:/usr/bin:/bin:/app/vendor/pdftk/bin
+	Check it worked:
+		heroku run bash
+			pdftk
+
++ In case of emergency git submodules:
+	http://stackoverflow.com/questions/15756286/how-to-install-python-module-living-in-a-private-git-repository-in-heroku-app			
