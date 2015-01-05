@@ -1,5 +1,4 @@
 Beaker==1.6.4
-Dockbarx==0.91
 Mako==1.0.0
 MarkupSafe==0.23
 PDF==1.0
