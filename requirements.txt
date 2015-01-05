@@ -1,11 +1,7 @@
-Beaker==1.6.4
-Mako==1.0.0
-MarkupSafe==0.23
+fdfgen==0.11.0
 PDF==1.0
-RBTools==0.6.2
 ZSI==2.1-a1
 egenix-mx-base==3.2.7
-fdfgen==0.11.0
 html5lib==0.999
 httplib2==0.9
 lxml==3.3.5
