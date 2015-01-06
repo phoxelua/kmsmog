@@ -14,18 +14,6 @@ class PdfForm < ActiveRecord::Base
   def check_fields
     h = self.content
 
-    puts "self"
-    p self
-
-    puts "fi "
-    puts self.file
-
-    # h = eval(self.content)
-    # if h.nil?
-    #   errors.add(:base, "Content be present")
-    #   return
-    # end
-
     if !h.key?("odo") or h["odo"].nil? or h["odo"].to_s.empty?
       errors.add(:odo, "field must be present")
     end  
