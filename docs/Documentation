@@ -17,6 +17,13 @@ PDF Filling
 + http://adamalbrecht.com/2014/01/31/pre-filling-pdf-form-templates-in-ruby-on-rails-with-pdftk/
 + http://micahroberson.com/generating-pdfs-from-templates-in-ruby-on-rails-and-heroku/
 
+
+AWS & S3
+=========
++ IAM and S3 bucket polcies: 
+	http://blogs.aws.amazon.com/security/post/TxPOJBY6FE360K/IAM-policies-and-Bucket-Policies-and-ACLs-Oh-My-Controlling-Access-to-S3-Resourc
++ AWS wiki: https://github.com/timkay/aws/wiki
+
 Heroku
 =======
 + How to get RoR and python?

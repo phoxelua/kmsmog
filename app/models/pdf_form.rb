@@ -77,7 +77,6 @@ class PdfForm < ActiveRecord::Base
           elsif k == "vin"
             new_key = k.upcase
           end
-          puts "key #{new_key}"
           self.content[new_key] = self.content[k]
           self.content.delete(k)
       end

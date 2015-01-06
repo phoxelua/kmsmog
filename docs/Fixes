@@ -4,9 +4,19 @@ Fixes
 
 + Storing pdf files in S3 as well as locally in Dropbox
 
++ Dependent dropdowns for year/make/model
+
++ Customer seach validation:
+	- don't validate phone number if none existant and 1 of other 2 fields supplied
+
++ Camelize keys form view < -- > python pdf <---> db storage
+	- consider format_content self.content in pdf_form.rb before validation
+
++ Offline modes?
+
++ Clean up fill.py NEW_KEYS
+
 + Remove deprecated code:
 	- gravatar for customers and pdfs...like wtf
 
-+ Dependent dropdowns for year/make/model
-
-+ Offline modes?
++ Remove prints
