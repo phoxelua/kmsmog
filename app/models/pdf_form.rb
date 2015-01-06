@@ -7,11 +7,18 @@ class PdfForm < ActiveRecord::Base
   has_many :repairs, dependent: :destroy  
   accepts_nested_attributes_for :repairs, :reject_if => lambda { |a| a[:instructions].blank? }, :allow_destroy => true
   default_scope -> { order(created_at: :desc) }
+  mount_uploader :file, FileUploader
   validates :content, presence: true
-  validate :check_fields
+  validate :check_fields, :file_size
 
   def check_fields
     h = self.content
+
+    puts "self"
+    p self
+
+    puts "fi "
+    puts self.file
 
     # h = eval(self.content)
     # if h.nil?
@@ -81,4 +88,11 @@ class PdfForm < ActiveRecord::Base
           self.content.delete(k)
       end
     end
+
+    # Validates the size of an uploaded file
+    def file_size
+      if file.size > 5.megabytes
+        errors.add(:file, "should be less than 5MB")
+      end
+    end    
 end

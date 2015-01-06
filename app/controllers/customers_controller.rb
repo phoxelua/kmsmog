@@ -17,7 +17,7 @@ class CustomersController < ApplicationController
   def create
     @user = current_user
     @customer = @user.customers.new(customer_params)
-    @pdf_form = @customer.pdf_forms.build(content: pdf_params.merge(customer_params))
+    @pdf_form = @customer.pdf_forms.build(content: pdf_params.merge(customer_params), file: file_params[:file])
     repair_params.each_value do |value|
       @pdf_form.repairs.build(value)
     end
@@ -49,6 +49,10 @@ class CustomersController < ApplicationController
       # params.require(:customer).except!(:name, :phone, :license_plate)
       #               .permit(pdf_forms_attributes: [:id , {formy: [ :emaily, :phone]}])
                     # .permit(pdf_forms_attributes: [{id: [:formy]}])
+    end
+
+    def file_params
+      params.require(:customer).require(:pdf_forms_attributes).require("0").permit(:file)      
     end
 
     def repair_params

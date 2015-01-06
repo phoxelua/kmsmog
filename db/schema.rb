@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150104005615) do
+ActiveRecord::Schema.define(version: 20150106171152) do
 
   create_table "customers", force: true do |t|
     t.string   "name"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150104005615) do
     t.integer  "customer_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "file"
   end
 
   add_index "pdf_forms", ["customer_id", "created_at"], name: "index_pdf_forms_on_customer_id_and_created_at"

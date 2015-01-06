@@ -2,7 +2,14 @@
   <span class="user">
     <%= link_to "asdf", user_customer_pdf_form_path(params[:user_id], @customer, pdf_form) %>	
   </span>
-  <span class="content"><%= pdf_form.content %></span>
+  <span class="content">
+  	<%= pdf_form.content %>
+  	<%= puts "hiiiiiiiiiii" %>
+  	<%= p pdf_form %>  	
+  	<%= puts pdf_form.file %>
+  	<%= puts pdf_form.file.url %>  	  	
+  	<%= link_to pdf_form.file, pdf_form.file.url if pdf_form.file?%>
+  </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(pdf_form.created_at) %> ago.
   </span>
