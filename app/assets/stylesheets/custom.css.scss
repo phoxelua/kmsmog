@@ -31,7 +31,7 @@ textarea {
 
 /* header */
 
-#logo {
+#w-logo {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
@@ -42,15 +42,26 @@ textarea {
   font-weight: bold;
 }
 
-#logo:hover {
+#w-logo:hover {
   color: #fff;
   text-decoration: none;
 }
 
+#p-logo {
+  float: left;
+  // margin-right: 10px;
+  padding-top: 6px;
+  padding-right: 0px;
+  padding-left: 0px;
+  // width: 100%;
+   // overflow-x: hiddens; 
+}
+
+
 /* footer */
 
 footer {
-  margin-top: 45px;
+  margin-top: 55px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
   color: #777;
@@ -118,7 +129,7 @@ aside {
     }
     h1 {
       font-size: 1.4em;
-      color: #900303;
+      // color: #900303;
       text-align: left;
       letter-spacing: -1px;
       margin-bottom: 3px;
@@ -216,25 +227,45 @@ input {
   list-style: none;
   padding: 0;
   li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
+    padding: 10px 0;    
   }
   .basic {
     margin-top: 5em;
     padding-top: 0;
   }
   .content {
-    display: block;
-    margin-left: 60px;
-    img {
-      display: block;
-      padding: 5px 0;
+    ul {
+      list-style: none;
+      padding-left: 40px;
+      li {
+        padding: 0px;
+        margin: 0px;
+        ul {
+          display: inline;
+          list-style: none;
+          padding: 0px;
+          li {
+            display: inline;
+            padding: 0px;
+            margin: 0px;
+          }
+          li:after {
+            content:",";
+          }
+          li:last-child:after {
+              content: "";
+          }        
+        }
+      }
     }
   }
   .timestamp {
     color: $gray-light;
     display: block;
-    margin-left: 60px;
+    padding-left: 38px;
+    padding-top: 0px;   
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e8e8e8;    
   }
   .gravatar {
     float: left;
@@ -263,25 +294,45 @@ span.picture {
   list-style: none;
   padding: 0;
   li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
+    padding: 10px 0;    
   }
-  .user {
+  .basic {
     margin-top: 5em;
     padding-top: 0;
   }
   .content {
-    display: block;
-    margin-left: 60px;
-    img {
-      display: block;
-      padding: 5px 0;
+    ul {
+      list-style: none;
+      padding-left: 40px;
+      li {
+        padding: 0px;
+        margin: 0px;
+        ul {
+          display: inline;
+          list-style: none;
+          padding: 0px;
+          li {
+            display: inline;
+            padding: 0px;
+            margin: 0px;
+          }
+          li:after {
+            content:",";
+          }
+          li:last-child:after {
+              content: "";
+          }        
+        }
+      }
     }
   }
   .timestamp {
     color: $gray-light;
     display: block;
-    margin-left: 60px;
+    padding-left: 38px;
+    padding-top: 0px;   
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e8e8e8;    
   }
   .gravatar {
     float: left;
@@ -289,7 +340,6 @@ span.picture {
     margin-top: 5px;
   }
 }
-
 aside {
   textarea {
     height: 100px;

@@ -1,8 +1,24 @@
 <li id="customer-<%= customer.id %>">
   <span class="basic">
-    <%= link_to customer.name, user_customer_path(@user, customer) %>
-  	<%= customer.phone %>
-  	<%= customer.license_plate %>  	
+    <span class="glyphicon glyphicon-user"></span> <%= link_to customer.name, user_customer_path(@user, customer) %> 
+    <span class="glyphicon glyphicon-phone-alt"></span> <%= number_to_phone(customer.phone) if !customer.phone.blank? %><%= "NA" if customer.phone.blank? %>
+    <span class="glyphicon glyphicon-road"></span> <%= customer.license_plate if !customer.license_plate.blank? %><%= "NA" if customer.license_plate.blank? %>
+  </span>
+  <span class="content">
+      <ul>
+        <% customer.pdf_forms.each do |pdf| %>
+          <li>
+            <%= link_to pdf.created_at.strftime('%b %d, %Y:'), pdf.file.url if pdf.file? %>
+            <%= pdf.created_at.strftime('%b %d, %Y:') if !pdf.file? %>            
+            <ul>
+              <% pdf.repairs.each do |repair| %>
+                <li><em><%= repair.instruction %></em></li
+                >
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
   </span>
   <span class="timestamp">
     Created <%= time_ago_in_words(customer.created_at) %> ago.

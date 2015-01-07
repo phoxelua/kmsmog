@@ -1,15 +1,17 @@
 <li id="pdf_form-<%= pdf_form.id %>">
   <span class="user">
-    <%= link_to "asdf", user_customer_pdf_form_path(params[:user_id], @customer, pdf_form) %>	
+    <%= link_to pdf_form.created_at.strftime('%b %d, %Y'), user_customer_pdf_form_path(params[:user_id], @customer, pdf_form) %>	
   </span>
-  <span class="content">
-  	<%= pdf_form.content %>
-  	<%= puts "hiiiiiiiiiii" %>
-  	<%= p pdf_form %>  	
-  	<%= puts pdf_form.file %>
-  	<%= puts pdf_form.file.url %>  	  	
-  	<%= link_to pdf_form.file, pdf_form.file.url if pdf_form.file?%>
-  </span>
+  <div class="content">
+	  <ul>
+	  	<li>
+	  		<strong>Phone:</strong> <%= number_to_phone(pdf_form.content[:phone]) if !pdf_form.content[:phone].blank? %><%= "NA" if pdf_form.content[:phone].blank? %>
+	  	</li>
+	  	<li> <strong>Invoice #:</strong> <%= pdf_form.content[:invoice] %></li>
+	  	<li><strong>Odo:</strong> <%= pdf_form.content[:odo] %></li>
+	  	<li><%= link_to pdf_form.file, pdf_form.file.url if pdf_form.file?%></li>
+	  </ul>
+  </div>
   <span class="timestamp">
     Posted <%= time_ago_in_words(pdf_form.created_at) %> ago.
   </span>

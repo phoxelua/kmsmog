@@ -6,6 +6,8 @@ Fixes
 
 + Dependent dropdowns for year/make/model
 
++ Limit number of listed repairs and listed pdfs in customer show
+
 + Customer seach validation:
 	- don't validate phone number if none existant and 1 of other 2 fields supplied
 
