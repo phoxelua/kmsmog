@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@pdf_form, :url => user_customer_pdf_form_path(@user, @customer, @pdf_form), :method => :patch) do |f| %>
+    <%= form_for(@pdf_form, :url => user_customer_pdf_form_path(@user, @customer, @pdf_form), :method => :patch, :html => {:multipart => true} ) do |f| %>
 
       <%= render 'shared/error_messages', object: f.object %>
 
@@ -13,8 +13,28 @@
       <%= f.label :"content[odo]", "Odo" %>
       <%= f.text_field :"content[odo]", :value => @pdf_form.content["odo"], class: 'form-control' %>
 
+      <%= f.label :"content[original_estimate]", "Original Estimate" %>
+      <%= f.text_field :"content[original_estimate]", :value => @pdf_form.content["original_estimate"], class: 'form-control' %>
+
+      <%= f.label :"content[invoice]", "Invoice" %>
+      <%= f.text_field :"content[invoice]", :value => @pdf_form.content["invoice"], class: 'form-control' %>
+
+      <li><%= link_to @pdf_form.file, @pdf_form.file.url if @pdf_form.file?%></li>
+
+      <span class="picture">
+        <%= f.file_field :file, accept: 'application/pdf' %>
+      </span>
+
 
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
+<script type="text/javascript">
+  $('#pdf_form_file').bind('change', function() {
+    size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+</script>

@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get 'signup'  => 'users#new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
-  delete 'logout'  => 'sessions#destroy'  
+  delete 'logout'  => 'sessions#destroy'
+
+  get 'users/:id/customers' => 'users#show' 
   # get 'users/:id/dashboard' => 'users#dashboard', as: :dashboard
   # post 'customers' => 'customers#create', as: :new_customers # not working right now
   # get "users/:user_id/customers/:id" => 'customers#new', as: :new_customer

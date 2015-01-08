@@ -20,6 +20,10 @@ Fixes
 
 + Clean up fill.py NEW_KEYS
 
++ Permissions on customer_params, pdf_params -> do them correctly
+
++ Permissions on editing, updating, destroying on Users -> Customers -> PDFs -> Repairs
+
 + Remove deprecated code:
 	- gravatar for customers and pdfs...like wtf
 
