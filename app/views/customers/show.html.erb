@@ -6,6 +6,7 @@
         <%= customer_gravatar_for @customer %>
         <%= @customer.name %>
       </h1>
+        <%= link_to "Edit customer", edit_user_customer_path(@user, @customer) %>      
     </section>
   </aside>
   <div class="col-md-8">

@@ -12,11 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.purr
 //= require bootstrap
 //= require turbolinks
-//= require_tree .
 //= require select2
 //= require selectize
+//= require best_in_place
+//= require_tree .
 
 
 function add_fields(link, association, content) {

@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :dashboard, :index, :destroy]
-  before_action :correct_user,   only: [:edit, :update, :dashboard]
+  before_action :logged_in_user, only: [:edit, :update, :dashboard, :index, :destroy, :show]
+  before_action :correct_user,   only: [:edit, :update, :dashboard, :show]
   before_action :admin_user,     only: [:destroy, :index]
+
 
   def index
     @users = User.paginate(page: params[:page])
@@ -33,16 +34,14 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    # @user.update_attributes(user_params)
+    # respond_with @user
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = "User profile updated"
       redirect_to @user
     else
       render 'edit'
     end
-  end  
-
-  def dashboard
-    @user = User.find(params[:id])
   end
 
   def destroy

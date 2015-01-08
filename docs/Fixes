@@ -8,6 +8,8 @@ Fixes
 
 + Limit number of listed repairs and listed pdfs in customer show
 
++ Customer creation should fail if fill.py fails
+
 + Customer seach validation:
 	- don't validate phone number if none existant and 1 of other 2 fields supplied
 

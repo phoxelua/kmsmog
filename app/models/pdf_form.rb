@@ -55,7 +55,8 @@ class PdfForm < ActiveRecord::Base
     end
 
     # run python script to create fdf and fill pdf
-    system("cd #{path} && python2 fill.py") 
+    puts "model.id #{self.id}"
+    system("cd #{path} && python2 fill.py #{self.id}") 
   end
 
 

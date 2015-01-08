@@ -1,9 +1,10 @@
 class CustomersController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy, :new]
-  before_action :correct_user,   only: [:destroy]
+  before_action :logged_in_user, only: [:create, :destroy, :new, :update]
+  before_action :correct_user,   only: [:destroy, :update]
 
   def show    
-    @customer = Customer.find(params[:id])
+    @user = current_user
+    @customer = @user.customers.find(params[:id])
     @pdf_forms = @customer.pdf_forms.paginate(page: params[:page])
   end
 
@@ -22,12 +23,38 @@ class CustomersController < ApplicationController
       @pdf_form.repairs.build(value)
     end
     if @customer.save
-      @pdf_form.fill @customer
-      flash[:success] = "Customer created!"
-      redirect_to root_url
-      # redirect_to @customer
+      if @pdf_form.fill @customer
+        flash[:success] = "Customer created!"
+        redirect_to root_url
+      else
+        render 'new'
+      end
     else
       render 'new'
+    end
+  end
+
+  def edit
+    puts "in edit>>>>>"
+    p params
+    @user = User.find(params[:user_id])
+    @customer = @user.customers.find(params[:id])
+    p @user
+    p @customer
+  end
+
+  def update    
+    puts "trying to update >>>>>>"
+    @user = User.find(params[:user_id])
+    @customer = @user.customers.find(params[:id])
+    p @user
+    p @customer
+    puts customer_params
+    if @customer.update_attributes(customer_params)
+      flash[:success] = "Customer profile updated"
+      redirect_to [@user, @customer]
+    else
+      render 'edit'
     end
   end
 

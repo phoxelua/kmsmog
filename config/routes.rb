@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   # post 'customers' => 'customers#create', as: :new_customers # not working right now
   # get "users/:user_id/customers/:id" => 'customers#new', as: :new_customer
   resources :users do
-    resources :customers,          only: [:create, :destroy, :show, :new] do
+    resources :customers,          only: [:create, :destroy, :show, :new, :update, :edit] do
       resources :pdf_forms do
-        resources :repairs,        only: [:create, :destroy, :show]
+        resources :repairs,        only: [:create, :destroy, :show, :update, :edit]
       end
     end
   end
