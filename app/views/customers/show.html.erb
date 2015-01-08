@@ -11,7 +11,7 @@
   </aside>
   <div class="col-md-8">
     <% if @customer.pdf_forms.any? %>
-      <h3>PDF Forms (<%= @customer.pdf_forms.count %>)</h3>
+      <h3>Forms (<%= @customer.pdf_forms.count %>)</h3>
       <ol class="pdf_forms">
         <%= render @pdf_forms %>
       </ol>

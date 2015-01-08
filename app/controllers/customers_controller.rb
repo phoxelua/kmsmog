@@ -35,21 +35,13 @@ class CustomersController < ApplicationController
   end
 
   def edit
-    puts "in edit>>>>>"
-    p params
     @user = User.find(params[:user_id])
     @customer = @user.customers.find(params[:id])
-    p @user
-    p @customer
   end
 
-  def update    
-    puts "trying to update >>>>>>"
+  def update
     @user = User.find(params[:user_id])
     @customer = @user.customers.find(params[:id])
-    p @user
-    p @customer
-    puts customer_params
     if @customer.update_attributes(customer_params)
       flash[:success] = "Customer profile updated"
       redirect_to [@user, @customer]

@@ -34,29 +34,32 @@ class PdfForm < ActiveRecord::Base
   end 
 
   def fill(customer)
-    path = Rails.root.to_s + "/pyscripts/"
-    puts "Filling pdf form...."
-    puts "path #{path}"
+    if self.file.blank?
+      path = Rails.root.to_s + "/pyscripts/"
+      puts "Filling pdf form...."
+      puts "path #{path}"
 
-    # gather all form fields into one hash
-    format_content
-    repairs_hash = {"Repairs" => []}
-    self.repairs.each do |repair|
-      repairs_hash["Repairs"].push(repair.attributes)
+      # gather all form fields into one hash
+      format_content
+      repairs_hash = {"Repairs" => []}
+      self.repairs.each do |repair|
+        repairs_hash["Repairs"].push(repair.attributes)
+      end
+      merged = self.content.merge(repairs_hash)
+
+      # xxx omg future me im so sowwy
+      # pass data to python in form of json
+      File.open(path + "temp_dict.json","w") do |f|
+        f.write(merged.to_json)
+      end
+
+      # run python script to create fdf and fill pdf
+      puts "model.id #{self.id}"
+      system("cd #{path} && python2 fill.py #{self.id}")
+    else
+      puts "Fill uploaded no need to auto fill pdf."
+      return true 
     end
-    
-    merged = self.content.merge(repairs_hash)
-
-    # xxx omg future me im so sowwy
-
-    # pass data to python in form of json
-    File.open(path + "temp_dict.json","w") do |f|
-      f.write(merged.to_json)
-    end
-
-    # run python script to create fdf and fill pdf
-    puts "model.id #{self.id}"
-    system("cd #{path} && python2 fill.py #{self.id}") 
   end
 
 

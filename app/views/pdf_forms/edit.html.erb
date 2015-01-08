@@ -1,0 +1,20 @@
+<% provide(:title, "Edit pdf") %>
+<h1>Update pdf</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@pdf_form, :url => user_customer_pdf_form_path(@user, @customer, @pdf_form), :method => :patch) do |f| %>
+
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= puts "yooooo" %>
+      <%= p @pdf_form %>
+
+      <%= f.label :"content[odo]", "Odo" %>
+      <%= f.text_field :"content[odo]", :value => @pdf_form.content["odo"], class: 'form-control' %>
+
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

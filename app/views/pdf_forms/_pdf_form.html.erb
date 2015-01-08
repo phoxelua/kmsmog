@@ -7,12 +7,18 @@
 	  	<li>
 	  		<strong>Phone:</strong> <%= number_to_phone(pdf_form.content[:phone]) if !pdf_form.content[:phone].blank? %><%= "NA" if pdf_form.content[:phone].blank? %>
 	  	</li>
-	  	<li> <strong>Invoice #:</strong> <%= pdf_form.content[:invoice] %></li>
-	  	<li><strong>Odo:</strong> <%= pdf_form.content[:odo] %></li>
+	  	<li>
+	  		<strong>Invoice #:</strong> <%= pdf_form.content[:invoice] if !pdf_form.content[:invoice].blank? %><%= "NA" if pdf_form.content[:invoice].blank? %>
+	  	</li>
+	  	<li>
+	  		<strong>Odo:</strong> <%= pdf_form.content[:odo] if !pdf_form.content[:odo].blank? %><%= "NA" if pdf_form.content[:odo].blank? %>
+	  	</li>	  	
 	  	<li><%= link_to pdf_form.file, pdf_form.file.url if pdf_form.file?%></li>
 	  </ul>
   </div>
   <span class="timestamp">
     Posted <%= time_ago_in_words(pdf_form.created_at) %> ago.
+    <%= link_to "edit", edit_user_customer_pdf_form_path(@user, @customer, pdf_form) %>,     
+    <%= link_to "delete", user_customer_pdf_form_path(params[:user_id], @customer, pdf_form), method: :delete, data: { confirm: "You sure?" } %>    
   </span>
 </li>
