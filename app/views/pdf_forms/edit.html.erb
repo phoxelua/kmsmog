@@ -7,9 +7,6 @@
 
       <%= render 'shared/error_messages', object: f.object %>
 
-      <%= puts "yooooo" %>
-      <%= p @pdf_form %>
-
       <%= f.label :"content[odo]", "Odo" %>
       <%= f.text_field :"content[odo]", :value => @pdf_form.content["odo"], class: 'form-control' %>
 

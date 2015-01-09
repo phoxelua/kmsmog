@@ -1,8 +1,8 @@
 <%= form_for([@user, @customer], :url => user_customers_path(@user)) do |customer| %>
     <%= render 'shared/error_messages', object: customer.object %>
-    	<div class="col-md-4">
-    	  	<div class="field">
-      		<%= customer.text_field :name, placeholder: "John Smith", class: 'form-control' %>
+      <div class="col-md-4">
+          <div class="field">
+          <%= customer.text_field :name, placeholder: "John Smith", class: 'form-control' %>
         </div>
       </div>
       <div class="col-md-4">

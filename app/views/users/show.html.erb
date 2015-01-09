@@ -10,9 +10,34 @@
         <span><%= @user.email %></span>
     </section>
   </aside>
+</div>
+<%= form_tag user_path(@user), :method => 'get' do %>
+  <div class="row">
+      <div class="col-md-4">
+            <%= label_tag :"search[name]", "Name" %>
+            <%= text_field_tag :"search[name]", params[:search]["name"], class: 'form-control' %>
+      </div>
+      <div class="col-md-4">
+            <%= label_tag :"search[name]", "Phone" %>      
+            <%= text_field_tag :"search[phone]", params[:search]["phone"], class: 'form-control' %>
+      </div>
+      <div class="col-md-4">
+            <%= label_tag :"search[name]", "License Plate" %>      
+            <%= text_field_tag :"search[license_plate]", params[:search]["license_plate"], class: 'form-control' %>
+      </div>        
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <%= submit_tag "Search", :name => nil, class: 'btn btn-primary form-control' %>
+        <%= link_to "New customer? Create one now!", new_user_customer_path(@user), :method => :get %> or 
+        <%= link_to "Reset", user_path, :name => nil %>
+    </div>
+  </div>  
+<% end %>    
+<div class="row">
   <div class="col-md-8">
     <% if @user.customers.any? %>
-      <h3>Customers (<%= @user.customers.count %>)</h3>
+      <h3>Customers (<%= @customers.count %>)</h3>
       <ol class="customers">
         <%= render @customers %>
       </ol>
@@ -20,3 +45,7 @@
     <% end %>
   </div>  
 </div>
+<script type="text/javascript">
+  $(document).ready(function () {
+  });
+</script>

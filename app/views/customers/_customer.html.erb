@@ -8,7 +8,7 @@
       <ul>
         <% customer.pdf_forms.each do |pdf| %>
           <li>
-            <%= link_to pdf.created_at.strftime('%b %d, %Y:'), pdf.file.url if pdf.file? %>
+            <%= link_to pdf.created_at.localtime.strftime('%b %d, %Y:'), pdf.file.url if pdf.file? %>
             <%= pdf.created_at.strftime('%b %d, %Y:') if !pdf.file? %>            
             <ul>
               <% pdf.repairs.each do |repair| %>
@@ -21,7 +21,7 @@
       </ul>
   </span>
   <span class="timestamp">
-    Created <%= time_ago_in_words(customer.created_at) %> ago.
+    Created <%= time_ago_in_words(customer.created_at.localtime) %> ago.
     <% if current_user?(customer.user) %>
       <%= link_to "delete", user_customer_path(@user, customer), method: :delete,
                                        data: { confirm: "You sure?" } %>

@@ -10,7 +10,28 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-    @customers = @user.customers.paginate(page: params[:page])    
+    if params[:search]
+      condition_left = []
+      condition_right = []
+      if !params[:search]["name"].blank?
+        condition_left += ['name LIKE ?']
+        condition_right += ["%#{params[:search]['name']}%"]
+      end
+      if !params[:search]["phone"].blank?
+        condition_left += ['phone LIKE ?']
+        condition_right += ["%#{params[:search]['phone']}%"]
+      end
+      if !params[:search]["license_plate"].blank?
+        condition_left += ['license_plate LIKE ?']
+        condition_right += ["%#{params[:search]['license_plate']}%"]
+      end
+      conditions = [condition_left.join(" AND ")]
+      conditions += condition_right
+      @customers = @user.customers.where(conditions).paginate(page: params[:page])
+    else
+      params.merge!(:search => {})
+      @customers = @user.customers.paginate(page: params[:page])    
+    end
   end
 
   def new

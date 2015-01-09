@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= f.label :"content[year]", "Year"%> 
+    <div class="year-dropdown">
+      <%= f.grouped_collection_select :"content[year]", Model.order(:name), :years, :name, :name, :name, {:selected => "whatever_value", include_blank: true}, class: 'form-control' %>    
+    </div>
+  </div>
+  <div class="col-md-3">
+    <%= f.label :"content[make]", "Make" %><br />
+    <div class="make-dropdown">
+      <%= f.collection_select :"content[make]", Make.order(:name), :name, :name, {:selected => "whatever_value", include_blank: true}, class: 'form-control' %> 
+    </div>
+  </div>
+  <div class="col-md-2">
+    <%= f.label :"content[model]", "Model" %><br />
+    <div class="model-dropdown">
+      <%= f.grouped_collection_select :"content[model]", Make.order(:name), :models, :name, :name, :name, {:selected => "whatever_value", include_blank: true}, class: 'form-control' %>    
+    </div>
+  </div>
+  <div class="col-md-2">
+    <%= f.label :"content[trim]", "Trim/Note"%>
+    <div class="trim-dropdown">
+      <%= f.collection_select :"content[trim]", Trim.order(:name), :name, :name, {:selected => "whatever_value", include_blank: true}, class: 'form-control' %> 
+    </div>    
+  </div>
+  <div class="col-md-2">
+    <%= f.label :"content[engine]", "Engine"%>
+    <%= f.text_field :"content[engine]", :value => nil, class: 'form-control'%>
+  </div>            
+</div>

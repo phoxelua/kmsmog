@@ -34,10 +34,12 @@ class CustomersController < ApplicationController
     end
   end
 
-  def edit
-    @user = User.find(params[:user_id])
-    @customer = @user.customers.find(params[:id])
-  end
+  # use with snippet below in view
+  # <%= link_to "Edit customer", edit_user_customer_path(@user, @customer) %>
+  # def edit
+  #   @user = User.find(params[:user_id])
+  #   @customer = @user.customers.find(params[:id])
+  # end
 
   def update
     @user = User.find(params[:user_id])

@@ -6,6 +6,31 @@ class PdfFormsController < ApplicationController
     @repairs = @pdf_form.repairs.paginate(page: params[:page])
   end
 
+  def new
+    @user = current_user
+    @customer = @user.customers.find(params[:customer_id])    
+    @pdf_form = @customer.pdf_forms.build
+    2.times { @pdf_form.repairs.build }
+  end
+
+  def create
+    @user = current_user
+    @customer = @user.customers.find(params[:customer_id])
+    @pdf_form = @customer.pdf_forms.build(content: pdf_params.merge(customer_params), file: file_params)
+    repair_params.each_value do |value|
+      @pdf_form.repairs.build(value)
+    end
+    if @customer.save
+      if @pdf_form.fill @customer
+        flash[:success] = "PDF created!"
+        redirect_to [@user, @customer]
+      else
+        render 'new'
+      end
+    else
+      render 'new'
+    end    
+  end
 
   def edit
     puts "in edit pdf "
@@ -18,9 +43,6 @@ class PdfFormsController < ApplicationController
     @user = User.find(params[:user_id])
     @customer = @user.customers.find(params[:customer_id])
     @pdf_form = @customer.pdf_forms.find(params[:id])  
-    p "params #{params}"
-    p "pdf params #{pdf_params}"  
-    p "file  #{file_params}"
     if @pdf_form.update_attributes(content: pdf_params, file: file_params)
       flash[:success] = "PDF updated"
       redirect_to [@user, @customer, @pdf_form]
@@ -37,6 +59,9 @@ class PdfFormsController < ApplicationController
   end
 
   private
+    def customer_params
+      params.permit(:name, :phone, :license_plate)
+    end
 
     def pdf_params
       # xxx require "0" since only 1 pdf allowed per customer creation...find better way xxx
@@ -44,6 +69,14 @@ class PdfFormsController < ApplicationController
     end
 
     def file_params
-      params.require(:pdf_form).require(:file)
+      if params[:pdf_form][:file]
+        return params.require(:pdf_form).require(:file)
+      else
+        return nil
+      end
     end
+
+    def repair_params
+      params.require(:pdf_form).require(:repairs_attributes)
+    end    
 end

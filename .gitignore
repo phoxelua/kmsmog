@@ -18,3 +18,6 @@
 
 # Ignore pdf data folder
 /data
+
+# Ignore uploads
+/public/uploads

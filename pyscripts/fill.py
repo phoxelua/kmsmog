@@ -11,7 +11,7 @@ NEW_KEYS = Set(['RESET', 'WrittenBy', 'TotalService', 'Today', 'OP 11', 'OP 10',
 def generate_pdf(model_id):
 	new_dir = "../public/uploads/pdf_form/file/" + model_id
 	os.system("mkdir " + new_dir)
-	command = "pdftk BAS_inv_new.pdf fill_form temp_data_new.fdf output " + new_dir + "/test_new.pdf" 
+	command = "pdftk BAS_inv_new.pdf fill_form temp_data_new.fdf output " + new_dir + "/test_new.pdf flatten" 
 	os.system(command)
 
 def create_fdf(data):

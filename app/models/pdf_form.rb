@@ -40,12 +40,12 @@ class PdfForm < ActiveRecord::Base
       puts "path #{path}"
 
       # gather all form fields into one hash
-      format_content
+      formatted = format_content
       repairs_hash = {"Repairs" => []}
       self.repairs.each do |repair|
         repairs_hash["Repairs"].push(repair.attributes)
       end
-      merged = self.content.merge(repairs_hash)
+      merged = formatted.merge(repairs_hash)
 
       # xxx omg future me im so sowwy
       # pass data to python in form of json
@@ -56,6 +56,17 @@ class PdfForm < ActiveRecord::Base
       # run python script to create fdf and fill pdf
       puts "model.id #{self.id}"
       system("cd #{path} && python2 fill.py #{self.id}")
+
+      # update file 
+      src = File.join(Rails.root, "public/uploads/pdf_form/file/#{self.id}/test_new.pdf")
+      p "src #{src}"
+      p "self #{self}"
+      src_file = File.new(src)
+      p "file #{src_file}"
+      p self.content
+      self.update_attribute(:file, src_file)
+      p "self #{self}"
+      p self.content
     else
       puts "Fill uploaded no need to auto fill pdf."
       return true 
@@ -69,6 +80,7 @@ class PdfForm < ActiveRecord::Base
     end
 
     def format_content
+      formatted = {}
       self.content.keys.each do |k|
           new_key = k.camelize
           if k == "license_plate"
@@ -76,9 +88,10 @@ class PdfForm < ActiveRecord::Base
           elsif k == "vin"
             new_key = k.upcase
           end
-          self.content[new_key] = self.content[k]
-          self.content.delete(k)
+          formatted[new_key] = self.content[k]
+          # self.content.delete(k)
       end
+      return formatted
     end
 
     # Validates the size of an uploaded file
