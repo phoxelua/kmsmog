@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :dashboard, :index, :destroy, :show]
-  before_action :correct_user,   only: [:edit, :update, :dashboard, :show]
+  before_action :logged_in_user, only: [:edit, :update, :index, :destroy]
+  before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: [:destroy, :index]
 
 
@@ -9,28 +9,30 @@ class UsersController < ApplicationController
   end
 
   def show
-  	@user = User.find(params[:id])
-    if params[:search]
-      condition_left = []
-      condition_right = []
-      if !params[:search]["name"].blank?
-        condition_left += ['name LIKE ?']
-        condition_right += ["%#{params[:search]['name']}%"]
+    if logged_in?
+  	  @user = current_user
+      if params[:search]
+        condition_left = []
+        condition_right = []
+        if !params[:search]["name"].blank?
+          condition_left += ['name LIKE ?']
+          condition_right += ["%#{params[:search]['name']}%"]
+        end
+        if !params[:search]["phone"].blank?
+          condition_left += ['phone LIKE ?']
+          condition_right += ["%#{params[:search]['phone']}%"]
+        end
+        if !params[:search]["license_plate"].blank?
+          condition_left += ['license_plate LIKE ?']
+          condition_right += ["%#{params[:search]['license_plate']}%"]
+        end
+        conditions = [condition_left.join(" AND ")]
+        conditions += condition_right
+        @customers = @user.customers.where(conditions).paginate(page: params[:page])
+      else
+        params.merge!(:search => {})
+        @customers = @user.customers.paginate(page: params[:page])    
       end
-      if !params[:search]["phone"].blank?
-        condition_left += ['phone LIKE ?']
-        condition_right += ["%#{params[:search]['phone']}%"]
-      end
-      if !params[:search]["license_plate"].blank?
-        condition_left += ['license_plate LIKE ?']
-        condition_right += ["%#{params[:search]['license_plate']}%"]
-      end
-      conditions = [condition_left.join(" AND ")]
-      conditions += condition_right
-      @customers = @user.customers.where(conditions).paginate(page: params[:page])
-    else
-      params.merge!(:search => {})
-      @customers = @user.customers.paginate(page: params[:page])    
     end
   end
 
