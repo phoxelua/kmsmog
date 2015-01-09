@@ -19,6 +19,13 @@ end
 
 users = User.order(:name).take(5)
 5.times do
+  service = Faker::Commerce.product_name
+  price = Faker::Commerce.price
+  users.each { |user| user.menus.create!(service: service,  price: price) }
+end
+
+users = User.order(:name).take(5)
+5.times do
   name  = Faker::Name.name
   phone = "619-123-4567"
   license_plate = "ABC4567"

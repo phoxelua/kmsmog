@@ -1,33 +1,51 @@
 <% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
-
-      <%= render 'shared/error_messages', object: f.object %>
-
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
-
-      <%= f.label :organization %>
-      <%= f.text_field :organization, class: 'form-control' %>
-
-      <%= f.label :email %>
-      <%= f.text_field :email, class: 'form-control' %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
-    <% end %>
-
-    <div class="gravatar_edit">
-      <%= gravatar_for @user %>
-      <a href="http://gravatar.com/emails" target=_blank>change</a>
+<center>
+  <h1>Update your profile</h1>
+</center>
+<%= form_for(@user) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="row">
+    <h2>Basic</h2>
+    <div class="col-md-4">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
     </div>
+    <div class="col-md-4">
+        <%= f.label :organization %>
+        <%= f.text_field :organization, class: 'form-control' %>      
+    </div>
+    <div class="col-md-4">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: 'form-control' %>      
+    </div>    
   </div>
-</div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-2">
+        <%= f.label :password, "Password*" %>
+        <%= f.password_field :password, class: 'form-control' %>
+        * hidden for security purposes
+    </div>
+    <div class="col-md-4">
+        <%= f.label :password_confirmation, "Confirm Password*" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>      
+    </div>        
+  </div>
+  <div class="row">
+    <h2>Pricing</h2>
+      <%= f.fields_for :menus do |menu| %>
+        <div class="col-md-4 col-md-offset-2">
+          <%= menu.label :service %>
+          <%= menu.text_field :service, class: 'form-control' %>
+        </div>
+        <div class="col-md-2">
+          <%= menu.label :price, "Price($)" %>
+          <%= menu.text_field :price, class: 'form-control' %>
+        </div>        
+      <% end %>
+  </div>  
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <%= f.submit "Save changes", class: "btn btn-primary" %>
+    </div>    
+  </div>
+<% end %>

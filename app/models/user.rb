@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :customers, dependent: :destroy
-  accepts_nested_attributes_for :customers, :allow_destroy => true
+  has_many :menus, dependent: :destroy
+  accepts_nested_attributes_for :customers, :menus, :allow_destroy => true
   attr_accessor :remember_token
   before_save { self.email = self.email.downcase }
   validates :name,  presence: true, length: { maximum: 50 }
@@ -39,14 +40,5 @@ class User < ActiveRecord::Base
   # Forgets a user.
   def forget
     update_attribute(:remember_digest, nil)
-  end
-
-  # Search customers.
-  def self.search(search)
-    if search
-      find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
-    else
-      find(:all)
-    end
-  end  
+  end 
 end
