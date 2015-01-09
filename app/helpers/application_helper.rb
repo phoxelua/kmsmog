@@ -10,6 +10,15 @@ module ApplicationHelper
     end
   end	
 
+  def button_to_remove_fields(name, f)
+    button_to_function(name, "remove_fields(this)")
+  end
+
+  def button_to_function(name, function=nil, html_options={})
+    onclick = "#{"#{html_options[:onclick]}; " if html_options[:onclick]}#{function};"
+    tag(:input, html_options.merge(:type => 'button', :value => name, :onclick => onclick, :class => "btn btn-danger btn-small"))
+  end  
+
   def link_to_add_fields(name, f, association)
     new_object = f.object.class.reflect_on_association(association).klass.new
     fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|

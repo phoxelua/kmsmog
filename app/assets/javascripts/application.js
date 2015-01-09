@@ -20,6 +20,11 @@
 //= require best_in_place
 //= require_tree .
 
+function remove_fields(link) {
+	console.log($(link))
+	console.log($(link).closest(".row"))
+  $(link).closest(".row").remove();
+}
 
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
