@@ -1,21 +1,21 @@
 
 <div class="row">
-<div class="col-md-1">
-  <%= f.label :op, "OP"%>
-  <%= f.text_field :op, :value => 1, class: "form-control"%>
-</div>
-<div class="col-md-8">
-  <%= f.label :instruction, "Repair Order Instructions"%>
-  <%= f.text_field :instruction, :value => "fix pls", class: "form-control"%>
-</div>
-<div class="col-md-2">
-  <%= f.label :svc, "SVC CHG"%>
-  <%= f.text_field :svc, :value => 350, class: "form-control"%>
-</div>
-<div class="col-md-1">
-  <label>&nbsp;</label>
-  <center>
-    <%= button_to_remove_fields "-", f %>
-  </center>
-</div>
+  <div class="col-md-1">
+    <%= f.label :op, "OP"%>
+    <%= f.text_field :op, :value => 1, class: "form-control"%>
+  </div>
+  <div class="col-md-8">
+    <%= f.label :instruction, "Repair Order Instructions"%>
+    <%= f.collection_select :instruction, @user.menus, :service, :service, {:selected => "whatever_value", include_blank: true}, class: 'instruction-dropdown form-control' %>  
+  </div>
+  <div class="col-md-2">
+    <%= f.label :svc, "SVC CHG"%>
+    <%= f.collection_select :svc, @user.menus, :price, :price, {:selected => "whatever_value", include_blank: true}, class: 'svc-dropdown form-control' %>
+  </div>
+  <div class="col-md-1">
+    <label>&nbsp;</label>
+    <center>
+      <%= button_to_remove_fields "-", f %>
+    </center>
+  </div>
 </div>

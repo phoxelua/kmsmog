@@ -34,6 +34,48 @@ class CustomersController < ApplicationController
     end
   end
 
+  def load_years
+    @make_id = Make.find_by(name: params[:make]).id
+    @options = Model.where(make_id: @make_id).to_a
+    if @options.blank?
+      @options = []
+      Model.all.each do |m|
+        @options += [m.attributes]
+      end
+      render :json => @options
+    else
+      render :json => @options
+    end    
+  end
+
+  def load_models
+    @make_id = Make.find_by(name: params[:make]).id
+    @options = Model.where(make_id: @make_id).to_a
+    if @options.blank?
+      @options = []
+      Model.all.each do |m|
+        @options += [m.attributes]
+      end
+      render :json => @options
+    else
+      render :json => @options
+    end    
+  end
+
+  def load_prices
+    @user = current_user
+    @menu_options = @user.menus.find_by(service: params[:service])
+    if @menu_options.blank?
+      @menu_options = []
+      @user.menus.each do |m|
+        @menu_options += [m.attributes]
+      end
+      render :json => @menu_options
+    else
+      render :json => [@menu_options.attributes]
+    end    
+  end
+
   # use with snippet below in view
   # <%= link_to "Edit customer", edit_user_customer_path(@user, @customer) %>
   # def edit
