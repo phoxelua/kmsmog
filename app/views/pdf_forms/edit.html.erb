@@ -15,11 +15,16 @@
 
       <%= f.label :"content[invoice]", "Invoice" %>
       <%= f.text_field :"content[invoice]", :value => @pdf_form.content["invoice"], class: 'form-control' %>
+      
 
-      <li><%= link_to @pdf_form.file, @pdf_form.file.url if @pdf_form.file?%></li>
-
+      <strong>Current pdf: </strong><%= link_to @pdf_form.file, @pdf_form.file.url if @pdf_form.file?%>
+  
+      <p>
+        <br>
+        If you want to replace the current pdf file with a new one, choose a file below:
+      </p>
       <span class="picture">
-        <%= f.file_field :file, accept: 'application/pdf' %>
+        <%= f.file_field :file, accept: 'application/pdf'%>
       </span>
 
 

@@ -47,49 +47,5 @@
   </div>
 <% end %>
 <script type="text/javascript">
-$(document).ready(function () {
-
-
-    $('.make-dropdown').selectize({
-        create: true,
-        sortField: 'text',
-    });
-
-    $('.model-dropdown').selectize({
-        create: true,
-        sortField: 'text',
-    });
-
-    $('.year-dropdown').selectize({
-        create: true,
-        sortField: 'text',
-    });
-
-    $('.trim-dropdown').selectize({
-        create: true,
-        sortField: 'text',
-    });
-
-    // $('.model-dropdown > .selectize-control > .selectize-input').click()
-    // $('.model-dropdown > .selectize-control > .selectize-input').blur()
-    // $('#customer_name').focus();
-    
-
-
-    if($("#show_optional").is(":checked")){
-       $('.optional').show();   
-    }else{
-       $('.optional').hide();
-    };
-
-    var ckbox = $('#show_optional');
-
-    $('#show_optional').on('click',function () {
-      if (ckbox.is(':checked')) {
-        $('.optional').show();
-      } else {
-         $('.optional').hide();
-      }
-    });
-});
+   <%= render "shared/custom_drop" %>
 </script>

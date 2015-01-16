@@ -12,7 +12,7 @@ class CustomersController < ApplicationController
     @user = current_user
     @customer = @user.customers.build
     @pdf_form = @customer.pdf_forms.build
-    2.times { @pdf_form.repairs.build }
+    3.times { @pdf_form.repairs.build }
   end
 
   def create
@@ -23,7 +23,7 @@ class CustomersController < ApplicationController
       @pdf_form.repairs.build(value)
     end
     if @customer.save
-      if @pdf_form.fill @customer
+      if @pdf_form.fill
         flash[:success] = "Customer created!"
         redirect_to root_url
       else
@@ -109,9 +109,6 @@ class CustomersController < ApplicationController
     def pdf_params
       # xxx require "0" since only 1 pdf allowed per customer creation...find better way xxx
       params.require(:customer).require(:pdf_forms_attributes).require("0").require(:formy)
-      # params.require(:customer).except!(:name, :phone, :license_plate)
-      #               .permit(pdf_forms_attributes: [:id , {formy: [ :emaily, :phone]}])
-                    # .permit(pdf_forms_attributes: [{id: [:formy]}])
     end
 
     def file_params

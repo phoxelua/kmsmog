@@ -10,7 +10,7 @@ class PdfFormsController < ApplicationController
     @user = current_user
     @customer = @user.customers.find(params[:customer_id])    
     @pdf_form = @customer.pdf_forms.build
-    2.times { @pdf_form.repairs.build }
+    3.times { @pdf_form.repairs.build }
   end
 
   def create
@@ -33,7 +33,6 @@ class PdfFormsController < ApplicationController
   end
 
   def edit
-    puts "in edit pdf "
     @user = User.find(params[:user_id])
     @customer = @user.customers.find(params[:customer_id])
     @pdf_form = @customer.pdf_forms.find(params[:id])

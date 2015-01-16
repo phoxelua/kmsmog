@@ -51,5 +51,4 @@ if __name__ == "__main__":
 	data = read_new_data()
 	create_fdf(data)
 	model_id = sys.argv[1]
-	print "da model id is " + model_id
 	generate_pdf(model_id)

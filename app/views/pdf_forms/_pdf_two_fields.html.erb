@@ -1,22 +1,25 @@
 <div class="row">
   <div class="col-md-3">
-    <%= f.label :"content[year]", "Year"%> 
-    <%= f.grouped_collection_select :"content[year]", Model.order(:name), :years, :name, :name, :name, {:selected => "whatever_value", include_blank: true}, class: 'year-dropdown form-control' %>    
+    <%= f.label :"formy[year]", "Year"%>
+    <%= f.text_field :"formy[year]", :value => nil, class: 'form-control' %>
+    <% if false %>    
+      <%= f.grouped_collection_select :"formy[year]", Model.order(:name), :years, :name, :name, :name, {:selected => "whatever_value", include_blank: true}, class: 'year-dropdown form-control' %>
+    <% end %>    
   </div>
   <div class="col-md-3">
-    <%= f.label :"content[make]", "Make" %><br />
-    <%= f.collection_select :"content[make]", Make.order(:name), :name, :name, {:selected => "whatever_value", include_blank: true}, class: 'make-dropdown form-control' %> 
+    <%= f.label :"formy[make]", "Make" %><br />
+    <%= f.collection_select :"formy[make]", Make.order(:name), :name, :name, {:selected => "whatever_value", include_blank: true}, class: 'make-dropdown form-control' %> 
   </div>
   <div class="col-md-2">
-    <%= f.label :"content[model]", "Model" %><br />
-    <%= f.grouped_collection_select :"content[model]", Make.order(:name), :models, :name, :name, :name, {:selected => "whatever_value", include_blank: true}, class: 'model-dropdown form-control' %>    
+    <%= f.label :"formy[model]", "Model" %><br />
+    <%= f.grouped_collection_select :"formy[model]", Make.order(:name), :models, :name, :name, :name, {:selected => "whatever_value", include_blank: true}, class: 'model-dropdown form-control' %>    
   </div>
   <div class="col-md-2">
-    <%= f.label :"content[trim]", "Trim/Note"%>
-    <%= f.collection_select :"content[trim]", Trim.order(:name), :name, :name, {:selected => "whatever_value", include_blank: true}, class: 'trim-dropdown form-control' %> 
+    <%= f.label :"formy[trim]", "Trim/Note"%>
+    <%= f.collection_select :"formy[trim]", Trim.order(:name), :name, :name, {:selected => "whatever_value", include_blank: true}, class: 'trim-dropdown form-control' %> 
   </div>
   <div class="col-md-2">
-    <%= f.label :"content[engine]", "Engine"%>
-    <%= f.text_field :"content[engine]", :value => nil, class: 'form-control'%>
+    <%= f.label :"formy[engine]", "Engine"%>
+    <%= f.text_field :"formy[engine]", :value => nil, class: 'form-control'%>
   </div>            
 </div>

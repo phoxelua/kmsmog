@@ -11,12 +11,6 @@ Rails.application.routes.draw do
   get 'customers/load_models'
   get 'customers/load_years'  
   get 'users/:id/customers' => 'users#show' 
-  # get 'users/:id/dashboard' => 'users#dashboard', as: :dashboard
-  # post 'customers' => 'customers#create', as: :new_customers # not working right now
-  # get "users/:user_id/customers/:id" => 'customers#new', as: :new_customer
-      #   collection do
-      #   get :load
-      # end  
   resources :users do
     resources :customers,          only: [:create, :destroy, :show, :new, :update, :edit] do     
       resources :pdf_forms do

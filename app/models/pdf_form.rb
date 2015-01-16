@@ -10,7 +10,8 @@ class PdfForm < ActiveRecord::Base
   mount_uploader :file, FileUploader
   validates :content, presence: true
   validate :check_fields, :file_size
-
+  # after_save :fill
+  
   def check_fields
     h = self.content
 
@@ -33,7 +34,8 @@ class PdfForm < ActiveRecord::Base
     end
   end 
 
-  def fill(customer)
+  def fill
+    # pdf file not upload, proceed to auto fill with form data
     if self.file.blank?
       path = Rails.root.to_s + "/pyscripts/"
       puts "Filling pdf form...."
