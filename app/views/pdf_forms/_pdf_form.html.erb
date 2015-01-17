@@ -28,7 +28,9 @@
   </div>
   <span class="timestamp">
     Posted <%= time_ago_in_words(pdf_form.created_at.localtime) %> ago.
-    <%= link_to "edit", edit_user_customer_pdf_form_path(@user, @customer, pdf_form) %>,     
+    <% if false %>
+    	<%= link_to "edit", edit_user_customer_pdf_form_path(@user, @customer, pdf_form) %>,     
+    <% end %>
     <%= link_to "delete", user_customer_pdf_form_path(params[:user_id], @customer, pdf_form), method: :delete, data: { confirm: "You sure?" } %>    
   </span>
 </li>

@@ -44,7 +44,7 @@ class PdfFormsController < ApplicationController
     @pdf_form = @customer.pdf_forms.find(params[:id])  
     if @pdf_form.update_attributes(content: pdf_params, file: file_params)
       flash[:success] = "PDF updated"
-      redirect_to [@user, @customer, @pdf_form]
+      redirect_to [@user, @customer]
     else
       render 'edit'
     end
