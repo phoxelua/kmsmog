@@ -28,7 +28,7 @@ def create_fdf(data):
 				fields += [(roi_key, repair["instruction"])]
 				fields += [(svc_key, repair["svc"])]
 		elif k == "Invoice":
-			inv = data[k]
+			inv = str(data[k])
 			for i in range(5,-1, -1):
 				invoice_key = "D " + str(i)
 				if inv:

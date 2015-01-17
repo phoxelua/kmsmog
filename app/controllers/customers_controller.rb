@@ -23,12 +23,12 @@ class CustomersController < ApplicationController
       @pdf_form.repairs.build(value)
     end
     if @customer.save
-      if @pdf_form.fill
+      # if @pdf_form.fill
         flash[:success] = "Customer created!"
         redirect_to root_url
-      else
-        render 'new'
-      end
+      # else
+      #   render 'new'
+      # end
     else
       render 'new'
     end

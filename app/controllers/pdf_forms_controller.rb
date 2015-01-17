@@ -21,12 +21,12 @@ class PdfFormsController < ApplicationController
       @pdf_form.repairs.build(value)
     end
     if @customer.save
-      if @pdf_form.fill @customer
+      # if @pdf_form.fill
         flash[:success] = "PDF created!"
         redirect_to [@user, @customer]
-      else
-        render 'new'
-      end
+      # else
+      #   render 'new'
+      # end
     else
       render 'new'
     end    

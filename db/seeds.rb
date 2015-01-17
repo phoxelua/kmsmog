@@ -41,7 +41,8 @@ puts "Importing customers..."
 customers = Customer.order(:created_at)
 5.times do
   content = {"odo" => 123, "original_estimate" => 1, "invoice" => 112}
-  customers.each { |customer| customer.pdf_forms.create!(content: content) }
+  customers.each { |customer| 
+    customer.pdf_forms.create!(content: content.merge({"name" => customer.name, "phone" => customer.phone, "license_plate" => customer.license_plate})) }
 end
 
 puts "Importing pdfs..."
@@ -53,7 +54,6 @@ pdfs = PdfForm.order(:created_at)
   pdfs.each { |pdf| pdf.repairs.create!(op: op, instruction: instruction,
                                                       svc: svc) }
 end
-
 
 puts "Importing make..."
 CSV.foreach(Rails.root.join("make.csv"), headers: false) do |row|

@@ -1,4 +1,5 @@
 require 'json'
+
 class PdfForm < ActiveRecord::Base
   serialize :content, Hash
   belongs_to :customer, :class_name => "Customer", :foreign_key => 'Customer_id'
@@ -10,7 +11,7 @@ class PdfForm < ActiveRecord::Base
   mount_uploader :file, FileUploader
   validates :content, presence: true
   validate :check_fields, :file_size
-  # after_save :fill
+  after_save :fill
   
   def check_fields
     h = self.content
@@ -61,13 +62,9 @@ class PdfForm < ActiveRecord::Base
 
       # update file 
       src = File.join(Rails.root, "public/uploads/pdf_form/file/#{self.id}/test_new.pdf")
-      p "src #{src}"
-      p "self #{self}"
       src_file = File.new(src)
-      p "file #{src_file}"
       p self.content
       self.update_attribute(:file, src_file)
-      p "self #{self}"
       p self.content
     else
       puts "Fill uploaded no need to auto fill pdf."
