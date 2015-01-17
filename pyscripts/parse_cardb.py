@@ -5,13 +5,13 @@ from unidecode import unidecode
 
 def read():
 	lines = [line.strip() for line in open('raw')]
-	lines = lines[3:]
+	lines = lines[2:]
 	tripled = []
 	for line in lines:
 		temp = line.split(',')
 		year = temp[0].translate(None,',();')
 		make = unidecode(temp[1].split("'")[1].decode('utf-8'))
-		model = unidecode(temp[2].translate(None,',();').decode('utf-8'))
+		model = unidecode(temp[2].split("'")[1].translate(None,',();').decode('utf-8'))
 		tripled += [(year, make, model)]
 	return tripled
 
