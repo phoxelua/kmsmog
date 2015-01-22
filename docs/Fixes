@@ -7,6 +7,8 @@ Fixes
 
 + Editing pdf updating .content but not regenerating new pdf- pdf edit disabled for now
 
++ Db reset should automatically delete files
+
 + Customer creation should fail if fill.py fails
 
 + Customer seach validation:

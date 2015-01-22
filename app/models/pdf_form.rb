@@ -5,7 +5,7 @@ class PdfForm < ActiveRecord::Base
   belongs_to :customer, :class_name => "Customer", :foreign_key => 'Customer_id'
   before_validation :compact_keys
   validate :repair_count_within_limit, :on => :create
-  has_many :repairs, dependent: :destroy  
+  has_many :repairs, dependent: :destroy
   accepts_nested_attributes_for :repairs, :reject_if => lambda { |a| a[:instructions].blank? }, :allow_destroy => true
   default_scope -> { order(created_at: :desc) }
   mount_uploader :file, FileUploader
