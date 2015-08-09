@@ -13,7 +13,6 @@ def generate_pdf(model_id):
 	os.system("mkdir " + new_dir)
 	command = "pdftk BAS_inv_new.pdf fill_form temp_data_new.fdf output " + new_dir + "/test_new.pdf flatten" 
 	os.system(command)
-	print "Filled pdf form w command " + command
 
 def create_fdf(data):
 	fields = []
@@ -38,8 +37,6 @@ def create_fdf(data):
 				else:
 					fields += [(invoice_key, "0")]
 	fdf = forge_fdf("",fields,[],[],[])
-	print "create_fdf"
-	print "about to open temp_data_new.fdf"
 	fdf_file = open("temp_data_new.fdf","wb")
 	fdf_file.write(fdf)
 	fdf_file.close()
