@@ -116,6 +116,8 @@ when "production"
   ["80", "Sedan", "2WD", "4x4", "AWD", "C", "DX", "EX", "FWD", "HX", "LS", "LX", "M", "RWD", "Wagon"].each do |name|
     Trim.create!(name: name)
   end
+else
+  puts "idc"
 end
 
 
