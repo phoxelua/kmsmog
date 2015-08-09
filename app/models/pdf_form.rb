@@ -53,10 +53,12 @@ class PdfForm < ActiveRecord::Base
       # xxx omg future me im so sowwy
       # pass data to python in form of json
       File.open(path + "temp_dict.json","w") do |f|
+        p "Writing to temp_dict.json!!!"
         f.write(merged.to_json)
       end
 
       # run python script to create fdf and fill pdf
+      p "running pyscript: cd #{path} && python fill.py #{self.id}"
       system("cd #{path} && python fill.py #{self.id}")
 
       # update file 
