@@ -57,11 +57,12 @@ class PdfForm < ActiveRecord::Base
       end
 
       # run python script to create fdf and fill pdf
-      puts "model.id #{self.id}"
-      system("cd #{path} && python2 fill.py #{self.id}")
+      system("cd #{path} && python fill.py #{self.id}")
 
       # update file 
       src = File.join(Rails.root, "public/uploads/pdf_form/file/#{self.id}/test_new.pdf")
+      p "src"
+      p src
       src_file = File.new(src)
       p self.content
       self.update_attribute(:file, src_file)
