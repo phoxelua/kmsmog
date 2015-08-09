@@ -40,11 +40,11 @@ class PdfForm < ActiveRecord::Base
     if self.file.blank?
 
       if Rails.env.production?
-        path = "/pyscripts"
+        path = "/pyscripts/"
       else
         path = Rails.root.to_s + "/pyscripts/"
       end
-      
+
       puts "Filling pdf form...."
       puts "path #{path}"
 
