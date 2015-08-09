@@ -38,7 +38,13 @@ class PdfForm < ActiveRecord::Base
   def fill
     # pdf file not upload, proceed to auto fill with form data
     if self.file.blank?
-      path = Rails.root.to_s + "/pyscripts/"
+
+      if Rails.env.production?
+        path = "/pyscripts"
+      else
+        path = Rails.root.to_s + "/pyscripts/"
+      end
+      
       puts "Filling pdf form...."
       puts "path #{path}"
 

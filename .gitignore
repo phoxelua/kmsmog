@@ -21,7 +21,3 @@
 
 # Ignore uploads
 /public/uploads
-
-# Ignore temp json fdf
-/pyscripts/*.json
-/pyscripts/*.fdf
