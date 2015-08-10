@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150109215235) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "customers", force: true do |t|
     t.string   "name"
     t.string   "phone"
@@ -22,8 +25,8 @@ ActiveRecord::Schema.define(version: 20150109215235) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "customers", ["user_id", "name"], name: "index_customers_on_user_id_and_name"
-  add_index "customers", ["user_id"], name: "index_customers_on_user_id"
+  add_index "customers", ["user_id", "name"], name: "index_customers_on_user_id_and_name", using: :btree
+  add_index "customers", ["user_id"], name: "index_customers_on_user_id", using: :btree
 
   create_table "makes", force: true do |t|
     t.string   "name"
@@ -39,7 +42,7 @@ ActiveRecord::Schema.define(version: 20150109215235) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "menus", ["user_id"], name: "index_menus_on_user_id"
+  add_index "menus", ["user_id"], name: "index_menus_on_user_id", using: :btree
 
   create_table "models", force: true do |t|
     t.string   "name"
@@ -48,7 +51,7 @@ ActiveRecord::Schema.define(version: 20150109215235) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "models", ["make_id"], name: "index_models_on_make_id"
+  add_index "models", ["make_id"], name: "index_models_on_make_id", using: :btree
 
   create_table "pdf_forms", force: true do |t|
     t.text     "content"
@@ -58,8 +61,8 @@ ActiveRecord::Schema.define(version: 20150109215235) do
     t.string   "file"
   end
 
-  add_index "pdf_forms", ["customer_id", "created_at"], name: "index_pdf_forms_on_customer_id_and_created_at"
-  add_index "pdf_forms", ["customer_id"], name: "index_pdf_forms_on_customer_id"
+  add_index "pdf_forms", ["customer_id", "created_at"], name: "index_pdf_forms_on_customer_id_and_created_at", using: :btree
+  add_index "pdf_forms", ["customer_id"], name: "index_pdf_forms_on_customer_id", using: :btree
 
   create_table "queries", force: true do |t|
     t.string   "name"
@@ -78,7 +81,7 @@ ActiveRecord::Schema.define(version: 20150109215235) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "repairs", ["pdf_form_id"], name: "index_repairs_on_pdf_form_id"
+  add_index "repairs", ["pdf_form_id"], name: "index_repairs_on_pdf_form_id", using: :btree
 
   create_table "trims", force: true do |t|
     t.string   "name"
@@ -104,6 +107,6 @@ ActiveRecord::Schema.define(version: 20150109215235) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "years", ["model_id"], name: "index_years_on_model_id"
+  add_index "years", ["model_id"], name: "index_years_on_model_id", using: :btree
 
 end

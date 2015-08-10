@@ -19,9 +19,10 @@ gem 'responders',           '~>2.0'
 gem 'best_in_place'
 gem 'selectize-rails', '~> 0.11.2'
 gem 'select2-rails', '~> 3.5.9.1'
+gem 'pg'
+gem 'figaro'
 
 group :development, :test do
-  gem 'sqlite3',     '1.3.9'
   gem 'byebug',      '3.4.0'
   gem 'web-console', '2.0.0.beta3'
   gem 'spring',      '1.1.3'
@@ -34,7 +35,6 @@ group :test do
 end
 
 group :production, :staging do
-  gem 'sqlite3',     '1.3.9'
   gem 'rails_12factor'
   gem 'unicorn',        '4.8.3'  
 end

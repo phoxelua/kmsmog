@@ -15,15 +15,15 @@ class UsersController < ApplicationController
         condition_left = []
         condition_right = []
         if !params[:search]["name"].blank?
-          condition_left += ['name LIKE ?']
+          condition_left += ['name ILIKE ?']
           condition_right += ["%#{params[:search]['name']}%"]
         end
         if !params[:search]["phone"].blank?
-          condition_left += ['phone LIKE ?']
+          condition_left += ['phone ILIKE ?']
           condition_right += ["%#{params[:search]['phone']}%"]
         end
         if !params[:search]["license_plate"].blank?
-          condition_left += ['license_plate LIKE ?']
+          condition_left += ['license_plate ILIKE ?']
           condition_right += ["%#{params[:search]['license_plate']}%"]
         end
         conditions = [condition_left.join(" AND ")]
