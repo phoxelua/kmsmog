@@ -3,6 +3,12 @@ Fixes
 
 +++ Creating and Storing pdf files in S3 as well as locally in Dropbox
 
++++ Repair list on customer create new pdf page not working
+
++ Validation on form inputs
+	- type of field
+	- max min
+
 + Limit number of listed repairs and listed pdfs in customer show
 
 + Editing pdf updating .content but not regenerating new pdf- pdf edit disabled for now

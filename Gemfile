@@ -34,7 +34,7 @@ group :test do
 end
 
 group :production, :staging do
-  gem 'pg'
+  gem 'sqlite3',     '1.3.9'
   gem 'rails_12factor'
   gem 'unicorn',        '4.8.3'  
 end
