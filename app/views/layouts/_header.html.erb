@@ -5,8 +5,7 @@
     <%= link_to "smaug", root_path, id: "w-logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home",   root_path %></li>
-        <li><%= link_to "About",   about_path %></li>        
+        <li><%= link_to "Home",   root_path %></li>    
         <% if logged_in? %>
           <% if current_user.admin? %>
             <li><%= link_to "Users", users_path %></li>

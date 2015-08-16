@@ -11,29 +11,29 @@
 </ol>
 <div class="carousel-inner" role="listbox">
 <div class="item active">
-  <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+  <%= image_tag("ferrari.jpg", {class: "first-slide"}) %>
   <div class="container">
     <div class="carousel-caption">
       <h1>Manage customer data</h1>
-      <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+      <p>Simplify your workflow pipeline by consolidating all customer data in one place for more administrative practice</p>
     </div>
   </div>
 </div>
 <div class="item">
-  <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+  <%= image_tag("lambo.jpg", {class: "second-slide"}) %>
   <div class="container">
     <div class="carousel-caption">
       <h1>Easily create and retrieve invoices</h1>
-      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      <p>Store all of your customer's invoices so you can quickly retrieve them the next time they stop by</p>
     </div>
   </div>
 </div>
 <div class="item">
-  <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+  <%= image_tag("ducati.jpg", {class: "third-slide"}) %>
   <div class="container">
     <div class="carousel-caption">
       <h1>Analyze invoices for patterns</h1>
-      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      <p>Refine high-quality leads and model business data for smarter decisions</p>
     </div>
   </div>
 </div>
@@ -58,24 +58,24 @@
 	<!-- Three columns of text below the carousel -->
 	<div class="row">
 	<div class="col-lg-4">
-	<%= link_to image_tag("howard.jpg", {alt: "howard", class: 'img-circle', width: 140, height: 140}), 'http://howardanguyen.com/' %>
+	<%= link_to image_tag("howard.jpg", {alt: "howard", class: 'img-circle', width: 230, height: 230}), 'http://howardanguyen.com/' %>
 	  <h2>Howard</h2>
 	  <p>Hi! I'm the creator of Smaug. I can give you an unbiased testimony that this is the best web app ever created. </p>
-	  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+	  <p><a class="btn btn-default" href="http://howardanguyen.com" role="button">View details &raquo;</a></p>
 	</div><!-- /.col-lg-4 -->
 
 	<div class="col-lg-4">
-	<%= link_to image_tag("thao.jpg", {alt: "thao", class: 'img-circle', width: 140, height: 140}), 'http://www.kmsmog.com/AboutUs.html' %>
+	<%= link_to image_tag("thao.jpg", {alt: "thao", class: 'img-circle', width: 230, height: 230}), 'http://www.kmsmog.com/AboutUs.html' %>
 	  <h2>Thao</h2>
 	  <p>I am the owner of Kearny Mesa Smog Check. Smaug has made me like a million dollars.</p>
-	  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+	  <p><a class="btn btn-default" href="http://www.kmsmog.com" role="button">View details &raquo;</a></p>
 	</div><!-- /.col-lg-4 -->
 
 	<div class="col-lg-4">
-	<%= link_to image_tag("bryan.jpg", {alt: "bryan", class: 'img-circle', width: 140, height: 140}), 'http://www.kmsmog.com/AboutUs.html' %>
+	<%= link_to image_tag("bryan.jpg", {alt: "bryan", class: 'img-circle', width: 230, height: 230}), 'http://www.kmsmog.com/AboutUs.html' %>
 	  <h2>Bryan</h2>
 	  <p>Thanks to Smaug I now have to spend hours and hours on end entering customer invoice data. I didn't sign up for this. </p>
-	  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+	  <p><a class="btn btn-default" href="http://www.kmsmog.com" role="button">View details &raquo;</a></p>
 	</div><!-- /.col-lg-4 -->
 	</div><!-- /.row -->
 
@@ -90,7 +90,7 @@
 		  <p class="lead">There is no need to shift through mountains of paper invoices anymore- you can now do it online! Just enter customer data into Smaug and  it will be instantly searchable! Sooo coool...its like Smaug is just an interface for a database.</p>
 		</div>
 		<div class="col-md-5">
-		<%= image_tag("crm.jpg", {alt: "crm", class: 'featurette-image img-responsive center-block'}) %>
+		<%= image_tag("happy.jpg", {alt: "crm", class: 'featurette-image img-responsive center-block'}) %>
 		</div>
 	</div>
 
@@ -102,7 +102,7 @@
 		  <p class="lead">Smaug will blow your mind. With our patented state-of-the-art retroactive protection, Smaug is secure AF since it takes a bunch of data from filing cabinents and putting it on internet for everyone to steal.</p>
 		</div>
 		<div class="col-md-5 col-md-pull-7">
-		<%= image_tag("secure.jpg", {alt: "secure", class: 'featurette-image img-responsive center-block'}) %>
+		<%= image_tag("protection.jpg", {alt: "security", class: 'featurette-image img-responsive center-block'}) %>
 		</div>
 		</div>
 	</div>
@@ -112,10 +112,10 @@
 	<div class="row featurette">
 		<div class="col-md-7">
 		  <h2 class="featurette-heading">Predictive analytics. <span class="text-muted">Big Data at your fingertips. </span></h2>
-		  <p class="lead">We use machine learning and stuff to do smart things. So you might as well jump into the Big Data craze like everyone else! Seriously, all the cool kids are doing it- do you want to fit in or not?</p>
+		  <p class="lead">We use machine learning and stuff to do smart things. So you might as well jump into the Big Data craze like everyone else. Seriously, all the cool kids are doing it- do you want to fit in or not?</p>
 		</div>
 		<div class="col-md-5">
-		<%= image_tag("bigdata.jpg", {alt: "bigdata", class: 'featurette-image img-responsive center-block'}) %>
+		<%= image_tag("bigdata.png", {alt: "bigdata", class: 'featurette-image img-responsive center-block'}) %>
 		</div>
 	</div>
 
