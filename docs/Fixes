@@ -5,6 +5,8 @@ Fixes
 
 +++ Repair list on customer create new pdf page not working
 
+++ Change nesting and storage directory pdf on s3 and local
+
 + Validation on form inputs
 	- type of field
 	- max min

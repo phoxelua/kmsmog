@@ -1,1 +1,1 @@
-{"Odo":123,"OriginalEstimate":1,"Invoice":112,"Name":"Mrs. Jovanny Spinka","Phone":"6191234567","License":"ABC4567","Repairs":[]}
+{"Odo":"60065","OriginalEstimate":"350","Invoice":"123","Name":"Joe Doe","Phone":"5555555555","License":"ABCD1234","Repairs":[{"id":253,"op":1,"instruction":"fasdf","svc":111,"pdf_form_id":127,"created_at":"2015-08-15T19:21:51.051Z","updated_at":"2015-08-15T19:21:51.051Z"},{"id":254,"op":1,"instruction":"Small Plastic Computer","svc":52,"pdf_form_id":127,"created_at":"2015-08-15T19:21:51.052Z","updated_at":"2015-08-15T19:21:51.052Z"}]}
