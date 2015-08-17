@@ -97,6 +97,13 @@ when "production"
          password_confirmation: ENV["ADMIN_KEY"],
          admin: true)
 
+  User.create!(name:  "Thao",
+         email: "thao_ngv7772@yahoo.com",
+         organization: "Kearney Mesa Smog Check",
+         password:              ENV["THAO_KEY"],
+         password_confirmation: ENV["THAO_KEY"],
+         admin: false)
+
   puts "Importing make..."
   CSV.foreach(Rails.root.join("make.csv"), headers: false) do |row|
     Make.create! do |make|
