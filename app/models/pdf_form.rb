@@ -16,16 +16,16 @@ class PdfForm < ActiveRecord::Base
   def check_fields
     h = self.content
 
-    if !h.key?("odo") or h["odo"].nil? or h["odo"].to_s.empty?
-      errors.add(:odo, "field must be present")
+    if !h.key?("odo") or h["odo"].nil? or h["odo"].to_s.empty? or h["odo"].to_f == 0
+      errors.add(:odo, "field must be present and non-zero")
     end  
 
-    if !h.key?("original_estimate") or h["original_estimate"].nil? or  h["original_estimate"].to_s.empty?
-      errors.add(:original_estimate, "field must be present")
+    if !h.key?("original_estimate") or h["original_estimate"].nil? or  h["original_estimate"].to_s.empty? or h["original_estimate"].to_f == 0
+      errors.add(:original_estimate, "field must be present and non-zero")
     end  
 
-    if !h.key?("invoice") or h["invoice"].nil? or h["invoice"].to_s.empty?
-      errors.add(:invoice, "field must be present")
+    if !h.key?("invoice") or h["invoice"].nil? or h["invoice"].to_s.empty? or h["invoice"].to_f == 0
+      errors.add(:invoice, "field must be present and non-zero")
     end
   end
 

@@ -9,15 +9,15 @@
       <h2> Basic Information </h2>
       <div class="col-md-2">
         <%= customer.label :name, "Name" %>
-        <%= customer.text_field :name, :value => "John Smith", class: 'form-control' %>
+        <%= customer.text_field :name, :placeholder => "John Smith", class: 'form-control' %>
       </div>
       <div class="col-md-2">    
         <%= customer.label :phone %>
-        <%= customer.text_field :phone, :value => "555-555-5555", class: 'form-control' %>
+        <%= customer.text_field :phone, :placeholder => "555-555-5555", class: 'form-control' %>
       </div>
       <div class="col-md-2">
         <%= customer.label :license_plate %>
-        <%= customer.text_field :license_plate, :value => "ABCD1234", class: 'form-control' %>
+        <%= customer.text_field :license_plate, :placeholder => "5ABC123", class: 'form-control' %>
       </div>
       <%= render "pdf_one_fields", :f => pdf_form_form %>
     </div>

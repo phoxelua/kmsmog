@@ -1,12 +1,12 @@
 <div class="col-md-2">
   <%= f.label :"content[odo]", "Odo"%>
-  <%= f.text_field :"content[odo]", :value => 60065, class: 'form-control' %>
+  <%= f.text_field :"content[odo]", :value => 0, class: 'form-control' %>
 </div>
 <div class="col-md-2">
   <%= f.label :"content[original_estimate]", "Orig. Estimate"%>
-  <%= f.text_field :"content[original_estimate]", :value => 350, class: 'form-control' %>
+  <%= f.text_field :"content[original_estimate]", :value => 0, class: 'form-control' %>
 </div>
 <div class="col-md-2">
   <%= f.label :"content[invoice]", "Invoice #"%>
-  <%= f.text_field :"content[invoice]", :value => 123, class: 'form-control' %>
+  <%= f.text_field :"content[invoice]", :value => @invoice_no, class: 'form-control' %>
 </div>  

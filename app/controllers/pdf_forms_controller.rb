@@ -10,6 +10,10 @@ class PdfFormsController < ApplicationController
     @user = current_user
     @customer = @user.customers.find(params[:customer_id])    
     @pdf_form = @customer.pdf_forms.build
+    @invoice_no = 0
+    current_user.customers.each do |customer|
+       @invoice_no += customer.pdf_forms.count
+    end
     3.times { @pdf_form.repairs.build }
   end
 
